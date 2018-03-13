@@ -24,7 +24,7 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
         NSNumber *width = [json objectForKey: @"width"];
         NSNumber *height = [json objectForKey: @"height"];
         
-        NSDictionary *props = [json objectForKey: @"props"];
+        NSDictionary *props = [json objectForKey: @"pattern"];
         
         NSNumber *dotCount = [props objectForKey: @"dotCount"];
         NSNumber *dotNormalSize = [props objectForKey: @"dotNormalSize"];
@@ -37,20 +37,25 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
         
         NSNumber *dotAnimationDuration = [props objectForKey: @"dotAnimationDuration"];
 
-        CGFloat spacing = 40 * ([width integerValue] / 375.0f);
+        CGFloat spacing;
+        if ([width intValue] > [height intValue]) {
+            spacing = 40 * ([width integerValue] / 375.0f);
+        } else {
+            spacing = 40 * ([height integerValue] / 375.0f);
+        }
         
         TQGestureLockDrawManager *drawManager = [TQGestureLockDrawManager defaultManager];
-        drawManager.circleDiameter = ([width integerValue] - spacing * 4) / 3;
-//        drawManager.subCirclesCount = [dotCount integerValue];
-//        drawManager.bridgingLineWidth = [pathWidth integerValue];
-//        drawManager.drawNormalColor = [RNLockScreen colorFromHexCode: normalStateColor];
-//        drawManager.drawSelectedColor = [RNLockScreen colorFromHexCode: correctStateColor];
-//        drawManager.drawErrorColor = [RNLockScreen colorFromHexCode: wrongStateColor];
+        drawManager.circleDiameter = [dotNormalSize floatValue];
+        drawManager.subCirclesCount = [dotCount floatValue];
+        drawManager.bridgingLineWidth = [pathWidth floatValue];
+        drawManager.drawNormalColor = [RNLockScreen colorFromHexCode: normalStateColor];
+        drawManager.drawSelectedColor = [RNLockScreen colorFromHexCode: correctStateColor];
+        drawManager.drawErrorColor = [RNLockScreen colorFromHexCode: wrongStateColor];
 
         drawManager.edgeSpacingInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
         drawManager.hollowCircleBorderWidth = 0.5;
         
-        TQGestureLockView *lockView = [[TQGestureLockView alloc] initWithFrame:CGRectMake(0, 0, 1000, 1000) drawManager: drawManager];
+        TQGestureLockView *lockView = [[TQGestureLockView alloc] initWithFrame:CGRectMake(0, 0, [width floatValue], [height floatValue]) drawManager: drawManager];
         [view addSubview: lockView];
     } else if ([type isEqualToString: @"pin"]) {
         

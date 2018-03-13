@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840F440FFC92394571C9E7EE /* libPods-RNLockScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAADEEC796247C86EEF91D10 /* libPods-RNLockScreen.a */; };
 		B3E7B58A1CC2AC0600A0062D /* RNLockScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNLockScreen.m */; };
 		CE3733E42053C8A0006D6EFB /* libTOPasscodeViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3733E12053C897006D6EFB /* libTOPasscodeViewController.a */; };
 		CE3733E52053C8A0006D6EFB /* libTQGestureLockView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3733E32053C897006D6EFB /* libTQGestureLockView.a */; };
@@ -65,6 +66,7 @@
 			files = (
 				CE3733E42053C8A0006D6EFB /* libTOPasscodeViewController.a in Frameworks */,
 				CE3733E52053C8A0006D6EFB /* libTQGestureLockView.a in Frameworks */,
+				840F440FFC92394571C9E7EE /* libPods-RNLockScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
