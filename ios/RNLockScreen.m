@@ -3,6 +3,8 @@
 
 @implementation RNLockScreen
 
+NSString *lock;
+
 - (dispatch_queue_t)methodQueue {
     return dispatch_get_main_queue();
 }
@@ -25,6 +27,8 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
         NSNumber *height = [json objectForKey: @"height"];
         
         NSDictionary *props = [json objectForKey: @"pattern"];
+        
+        lock = [props objectForKey: @"lock"];
         
         NSNumber *dotCount = [props objectForKey: @"dotCount"];
         NSNumber *dotNormalSize = [props objectForKey: @"dotNormalSize"];
@@ -51,14 +55,28 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
         drawManager.drawNormalColor = [RNLockScreen colorFromHexCode: normalStateColor];
         drawManager.drawSelectedColor = [RNLockScreen colorFromHexCode: correctStateColor];
         drawManager.drawErrorColor = [RNLockScreen colorFromHexCode: wrongStateColor];
-
+        
         drawManager.edgeSpacingInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
         drawManager.hollowCircleBorderWidth = 0.5;
         
         TQGestureLockView *lockView = [[TQGestureLockView alloc] initWithFrame:CGRectMake(0, 0, [width floatValue], [height floatValue]) drawManager: drawManager];
+
+        lockView.delegate = self;
+        
         [view addSubview: lockView];
     } else if ([type isEqualToString: @"pin"]) {
         
+    }
+}
+
+
+#pragma mark - TQGestureLockViewDelegate
+
+- (void)gestureLockView:(TQGestureLockView *)gestureLockView lessErrorSecurityCodeSting:(NSString *)securityCodeSting {
+    if ([securityCodeSting isEqualToString: lock]) {
+        [gestureLockView setNeedsDisplayGestureLockErrorState: NO];
+    } else {
+        [gestureLockView setNeedsDisplayGestureLockErrorState: YES];
     }
 }
 
