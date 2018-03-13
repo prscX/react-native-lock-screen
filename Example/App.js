@@ -23,7 +23,7 @@ export default class App extends Component<Props> {
 
   render() {
     return <View style={styles.container}>
-        <RNLockScreen type={'pin'} pattern={{
+        <RNLockScreen type={'pattern'} pattern={{
           lock: '012'
         }} />
       </View>;

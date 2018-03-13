@@ -1,11 +1,13 @@
 
 #if __has_include("RCTBridgeModule.h")
-#import "RCTBridgeModule.h"
+#import "RCTViewManager.h"
 #else
-#import <React/RCTBridgeModule.h>
+#import <React/RCTViewManager.h>
 #endif
 
-@interface RNLockScreen : NSObject <RCTBridgeModule>
+#import "TQGestureLockView.h"
+
+@interface RNLockScreen : RCTViewManager
 
 @end
   

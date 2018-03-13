@@ -9,7 +9,8 @@ class RNLockScreen extends Component {
     ...ViewPropTypes,
 
     type: PropTypes.string,
-    mode: PropTypes.number,
+    width: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+    height: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
     pattern: PropTypes.object,
     pin: PropTypes.object,
     props: PropTypes.object
@@ -17,7 +18,8 @@ class RNLockScreen extends Component {
 
   static defaultProps = {
     type: "pin",
-    mode: -1,
+    width: 1000,
+    height: 1000,
     onStarted: undefined,
     onProgress: undefined,
     onComplete: undefined,
@@ -31,7 +33,7 @@ class RNLockScreen extends Component {
       pathWidth: 4,
       aspectRatioEnabled: true,
       aspectRatio: "square",
-      normalStateColor: "#FFFFFF",
+      normalStateColor: "#000000",
       correctStateColor: "#0000ee",
       wrongStateColor: "#786787",
       dotAnimationDuration: 200,
@@ -86,6 +88,8 @@ class RNLockScreen extends Component {
         style={[style.container, this.props.style]}
         props={{
           type: this.props.type,
+          width: this.props.width,
+          height: this.props.height,
           pattern: patternProps,
           pin: pinProps
         }}

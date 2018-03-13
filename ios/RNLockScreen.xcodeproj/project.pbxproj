@@ -7,9 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54E4F98B252B92787C9ABC9C /* libPods-RNLockScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAADEEC796247C86EEF91D10 /* libPods-RNLockScreen.a */; };
 		B3E7B58A1CC2AC0600A0062D /* RNLockScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNLockScreen.m */; };
+		CE3733E42053C8A0006D6EFB /* libTOPasscodeViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3733E12053C897006D6EFB /* libTOPasscodeViewController.a */; };
+		CE3733E52053C8A0006D6EFB /* libTQGestureLockView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3733E32053C897006D6EFB /* libTQGestureLockView.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE3733DE2053C897006D6EFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE3733D82053C897006D6EFB /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C427C027235ED0E1FBDDDDABD0E25716;
+			remoteInfo = "Pods-RNLockScreen";
+		};
+		CE3733E02053C897006D6EFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE3733D82053C897006D6EFB /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6471CEF5C62AB101ABEFB6D1F9EA3297;
+			remoteInfo = TOPasscodeViewController;
+		};
+		CE3733E22053C897006D6EFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE3733D82053C897006D6EFB /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5C836B8E9769A848A73B41F17E5781E2;
+			remoteInfo = TQGestureLockView;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
@@ -28,6 +53,7 @@
 		892B6F8AD57BBECA426D2E35 /* Pods-RNLockScreen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNLockScreen.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNLockScreen/Pods-RNLockScreen.release.xcconfig"; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNLockScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNLockScreen.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNLockScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNLockScreen.m; sourceTree = "<group>"; };
+		CE3733D82053C897006D6EFB /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		E249D3EB89A2C59F6C4B9AC7 /* Pods-RNLockScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNLockScreen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNLockScreen/Pods-RNLockScreen.debug.xcconfig"; sourceTree = "<group>"; };
 		FAADEEC796247C86EEF91D10 /* libPods-RNLockScreen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNLockScreen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -37,7 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54E4F98B252B92787C9ABC9C /* libPods-RNLockScreen.a in Frameworks */,
+				CE3733E42053C8A0006D6EFB /* libTOPasscodeViewController.a in Frameworks */,
+				CE3733E52053C8A0006D6EFB /* libTQGestureLockView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,9 +99,20 @@
 			);
 			sourceTree = "<group>";
 		};
+		CE3733D92053C897006D6EFB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE3733DF2053C897006D6EFB /* libPods-RNLockScreen.a */,
+				CE3733E12053C897006D6EFB /* libTOPasscodeViewController.a */,
+				CE3733E32053C897006D6EFB /* libTQGestureLockView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E9410A9882EF3BDB43F27B99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE3733D82053C897006D6EFB /* Pods.xcodeproj */,
 				FAADEEC796247C86EEF91D10 /* libPods-RNLockScreen.a */,
 			);
 			name = Frameworks;
@@ -126,12 +164,42 @@
 			mainGroup = 58B511D21A9E6C8500147676;
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CE3733D92053C897006D6EFB /* Products */;
+					ProjectRef = CE3733D82053C897006D6EFB /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RNLockScreen */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CE3733DF2053C897006D6EFB /* libPods-RNLockScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-RNLockScreen.a";
+			remoteRef = CE3733DE2053C897006D6EFB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE3733E12053C897006D6EFB /* libTOPasscodeViewController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTOPasscodeViewController.a;
+			remoteRef = CE3733E02053C897006D6EFB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE3733E32053C897006D6EFB /* libTQGestureLockView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTQGestureLockView.a;
+			remoteRef = CE3733E22053C897006D6EFB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		D42E0FF36C7B8FA14EA30FA4 /* [CP] Check Pods Manifest.lock */ = {
