@@ -35,6 +35,13 @@
 			remoteGlobalIDString = 5C836B8E9769A848A73B41F17E5781E2;
 			remoteInfo = TQGestureLockView;
 		};
+		CEB3199620580EC800F8641E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE3733D82053C897006D6EFB /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ADC6AA6DC29AB26EC980A6960843611A;
+			remoteInfo = ABPadLockScreen;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -104,6 +111,7 @@
 		CE3733D92053C897006D6EFB /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				CEB3199720580EC800F8641E /* libABPadLockScreen.a */,
 				CE3733DF2053C897006D6EFB /* libPods-RNLockScreen.a */,
 				CE3733E12053C897006D6EFB /* libTOPasscodeViewController.a */,
 				CE3733E32053C897006D6EFB /* libTQGestureLockView.a */,
@@ -199,6 +207,13 @@
 			fileType = archive.ar;
 			path = libTQGestureLockView.a;
 			remoteRef = CE3733E22053C897006D6EFB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CEB3199720580EC800F8641E /* libABPadLockScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libABPadLockScreen.a;
+			remoteRef = CEB3199620580EC800F8641E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

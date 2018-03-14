@@ -6,6 +6,7 @@
 #endif
 
 #import "TQGestureLockView.h"
+#import "TOPasscodeViewController.h"
 
 @interface RNLockScreen : RCTViewManager
 

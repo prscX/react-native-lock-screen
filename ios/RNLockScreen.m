@@ -65,7 +65,10 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
         
         [view addSubview: lockView];
     } else if ([type isEqualToString: @"pin"]) {
+        TOPasscodeView *lockView = [[TOPasscodeView alloc] initWithFrame:CGRectMake(100, 100, 500, 500)];
+        lockView.titleView = nil;
         
+        [view addSubview: lockView];
     }
 }
 
