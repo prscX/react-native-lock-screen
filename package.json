@@ -16,6 +16,8 @@
         "url": "https://github.com/prscX/react-native-lock-screen.git"
     },
     "dependencies": {
+        "react-native-animatable": "1.2.4",
+        "react-native-on-layout": "2.0.2"
     },
     "devDependencies": {
         "prettier-pack": "0.0.5"

@@ -8,6 +8,6 @@ const style = StyleSheet.create({
     backgroundColor: "white",
     margin: 5
   }
-})
+});
 
 export default style;

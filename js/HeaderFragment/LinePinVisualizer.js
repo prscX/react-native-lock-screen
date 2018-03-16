@@ -1,11 +1,10 @@
-
 import React, { Component } from "react";
 import { StyleSheet, ViewPropTypes, View } from "react-native";
 import PropTypes from "prop-types";
 
-import Dot from './Dot'
+import Dot from "./Dot";
 
-import style from './LinePinVisualizer.style'
+import style from "./LinePinVisualizer.style";
 
 class LinePinVisualizer extends Component {
   static State = {
@@ -39,7 +38,7 @@ class LinePinVisualizer extends Component {
     if (nextProps.dots != this.props.dots) {
       this.setState({
         dots: nextProps.dots
-      })
+      });
     }
   }
 
@@ -75,4 +74,4 @@ class LinePinVisualizer extends Component {
   }
 }
 
-export default LinePinVisualizer
+export default LinePinVisualizer;
