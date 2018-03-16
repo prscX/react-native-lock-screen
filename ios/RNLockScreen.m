@@ -20,12 +20,11 @@ RCT_EXPORT_MODULE()
 RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
 
     NSString *type = [json objectForKey: @"type"];
-    
+
+    NSNumber *width = [json objectForKey: @"width"];
+    NSNumber *height = [json objectForKey: @"height"];
+
     if ([type isEqualToString: @"pattern"]) {
-        
-        NSNumber *width = [json objectForKey: @"width"];
-        NSNumber *height = [json objectForKey: @"height"];
-        
         NSDictionary *props = [json objectForKey: @"pattern"];
         
         lock = [props objectForKey: @"lock"];
@@ -65,8 +64,12 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
         
         [view addSubview: lockView];
     } else if ([type isEqualToString: @"pin"]) {
-        TOPasscodeView *lockView = [[TOPasscodeView alloc] initWithFrame:CGRectMake(100, 100, 500, 500)];
+        TOPasscodeView *lockView = [[TOPasscodeView alloc] initWithFrame:CGRectMake(0, 0, [width floatValue], [height floatValue])];
         lockView.titleView = nil;
+        lockView.titleText = @"";
+        lockView.style = TOPasscodeViewStyleTranslucentLight;
+        lockView.keypadButtonTextColor = [RNLockScreen colorFromHexCode: @"#000000"];;
+        lockView.backgroundColor = [RNLockScreen colorFromHexCode: @"#FFFFFF"];
         
         [view addSubview: lockView];
     }

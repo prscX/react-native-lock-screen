@@ -13,7 +13,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import RNLockScreen from 'react-native-lock-screen'
+import { RNLockScreen } from 'react-native-lock-screen'
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -23,7 +23,7 @@ export default class App extends Component<Props> {
 
   render() {
     return <View style={styles.container}>
-        <RNLockScreen type={'pin'} pattern={{
+        <RNLockScreen type={'pattern'} pattern={{
           lock: '012'
         }} />
       </View>;
