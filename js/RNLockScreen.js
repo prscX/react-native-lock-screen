@@ -9,12 +9,19 @@ import { PinFragment } from './PinFragment'
 import style from './RNLockScreen.style'
 
 class RNLockScreen extends Component {
+  static Mode = {
+    Capture: 0,
+    Verify: 1
+  }
+
   static propTypes = {
-    lock: PropTypes.number
+    lock: PropTypes.number,
+    mode: PropTypes.number
   }
 
   static defaultProps = {
-    lock: -1
+    lock: -1,
+    mode: 0
   }
 
   constructor (props) {
@@ -64,9 +71,30 @@ class RNLockScreen extends Component {
   }
 
   _onDone = () => {
-    this.setState({
-      state: 3
-    });
+    if (this.props.mode === RNLockScreen.Mode.Capture) {
+      this._onCapture()
+    } else if (this.props.mode === RNLockScreen.Mode.Verify) {
+      this._onVerify()
+    }
+  }
+
+  _onCapture = () => {
+    this.props.onCapture && this.props.onCapture(this.state.lock)
+  }
+
+  _onVerify = () => {
+    if (this.props.onVerify) {
+      let verified = this.props.onVerify(this.state.lock)
+      if (verified) {
+        this.setState({
+          state: HeaderFragment.State.Success
+        })
+      } else {
+       this.setState({
+          state: HeaderFragment.State.Error
+        })
+      }
+    }
   }
 
   _renderLockFragment() {

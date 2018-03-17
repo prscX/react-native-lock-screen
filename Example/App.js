@@ -23,9 +23,18 @@ export default class App extends Component<Props> {
 
   render() {
     return <View style={styles.container}>
-        <RNLockScreen type={'pattern'} pattern={{
-          lock: '012'
-        }} />
+        <RNLockScreen
+          mode={0}
+          onCapture={(lock) => {
+            console.log('lock: ' + lock)
+          }}
+          onVerify={(lock) => {
+            if (lock == 123)
+              return true
+            else
+              return false
+          }}
+        />
       </View>;
   }
 }
