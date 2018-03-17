@@ -24,7 +24,7 @@ export default class App extends Component<Props> {
   render() {
     return <View style={styles.container}>
         <RNLockScreen
-          mode={0}
+          mode={1}
           onCapture={(lock) => {
             console.log('lock: ' + lock)
           }}

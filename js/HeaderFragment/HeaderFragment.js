@@ -50,7 +50,7 @@ class HeaderFragment extends Component {
 
     reenterTitle: "Re-enter new passcode",
     reenterTitleStyle: style.reenterTitleStyle,
-    reenterIcon: undefined,
+    reenterIcon: lockIcon,
 
     successTitle: "Passcode is correct",
     successTitleStyle: style.successTitleStyle,
@@ -58,7 +58,7 @@ class HeaderFragment extends Component {
 
     errorTitle: "Passcode do not match",
     errorTitleStyle: style.errorTitleStyle,
-    errorIcon: undefined,
+    errorIcon: lockIcon,
 
     state: 0,
     dots: 0
@@ -119,13 +119,17 @@ class HeaderFragment extends Component {
       return this.props.renderPasscodeVisualizer();
 
     let renderPasscodeVisualizer = props => {
-      return <View style={style.passcodeVisualizerContainer}>
-          <Animatable.View ref={ref => {
+      return (
+        <View style={style.passcodeVisualizerContainer}>
+          <Animatable.View
+            ref={ref => {
               this.view = ref;
-            }}>
+            }}
+          >
             <LinePinVisualizer dots={this.props.dots} style={props.style} />
           </Animatable.View>;
-        </View>;
+        </View>
+      );
     };
 
     switch (this.props.state) {
@@ -154,9 +158,12 @@ class HeaderFragment extends Component {
     }
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (this.props.state === HeaderFragment.State.Error && prevProps.state !== HeaderFragment.State.Error) {
-      this.view.shake(800)
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.state === HeaderFragment.State.Error &&
+      prevProps.state !== HeaderFragment.State.Error
+    ) {
+      this.view.shake(800);
     }
   }
 
