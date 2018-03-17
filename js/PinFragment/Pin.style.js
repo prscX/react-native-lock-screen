@@ -13,6 +13,10 @@ const style = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: "#7c7c7c"
+  },
+  image: {
+    height: 32,
+    width: 32
   }
 });
 

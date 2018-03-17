@@ -25,7 +25,8 @@ class RNLockScreen extends Component {
     super(props)
 
     this.state = {
-      lock: RNLockScreen.defaultProps.lock
+      lock: RNLockScreen.defaultProps.lock,
+      state: 0
     }
   }
 
@@ -35,7 +36,7 @@ class RNLockScreen extends Component {
       dots = this.state.lock.toString().length
     }
 
-    return <HeaderFragment style={style.headerContainer} dots={dots} />;
+    return <HeaderFragment style={style.headerContainer} dots={dots} state={this.state.state} />;
   }
 
   _renderSeparator () {
@@ -44,7 +45,7 @@ class RNLockScreen extends Component {
     return <View/>
   }
 
-  _onPress = (pin) => {
+  _onAdd = (pin) => {
     let lock = this.state.lock
     if (lock === RNLockScreen.defaultProps.lock) {
       lock = 0
@@ -55,9 +56,26 @@ class RNLockScreen extends Component {
     })
   }
 
+  _onRemove = () => {
+    let lock = this.state.lock;
+    if (lock === RNLockScreen.defaultProps.lock) {
+      lock = 0;
+    }
+
+    lock = lock.toString()
+
+    this.setState({ lock: lock.substring(0, lock.length - 1) });
+  }
+
+  _onDone = () => {
+    this.setState({
+      state: 2
+    });
+  }
+
   _renderLockFragment() {
     return <View style={style.lockContainer}>
-        <PinFragment onPress={this._onPress} />
+        <PinFragment onAdd={this._onAdd} onRemove={this._onRemove} onDone={this._onDone} />
       </View>;
   }
 

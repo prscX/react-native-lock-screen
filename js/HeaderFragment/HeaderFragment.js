@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import style from "./HeaderFragment.style";
 
 import lockIcon from "../../assets/lock.png";
+import successIcon from "../../assets/lock.png";
+
 import LinePinVisualizer from "./LinePinVisualizer";
 
 class HeaderFragment extends Component {
@@ -49,7 +51,7 @@ class HeaderFragment extends Component {
 
     successTitle: "Passcode is correct",
     successTitleStyle: style.successTitleStyle,
-    successIcon: undefined,
+    successIcon: successIcon,
 
     errorTitle: "Passcode do not match",
     errorTitleStyle: style.errorTitleStyle,
@@ -113,11 +115,38 @@ class HeaderFragment extends Component {
     if (this.props.renderPasscodeVisualizer)
       return this.props.renderPasscodeVisualizer();
 
-    return (
-      <View style={style.passcodeVisualizerContainer}>
-        <LinePinVisualizer dots={this.props.dots} />
-      </View>
-    );
+    let renderPasscodeVisualizer = props => {
+      return (
+        <View style={style.passcodeVisualizerContainer}>
+          <LinePinVisualizer dots={this.props.dots} style={props.style} />
+        </View>
+      );
+    };
+
+    switch (this.props.state) {
+      case HeaderFragment.State.Default:
+        return renderPasscodeVisualizer({
+          style: style.defaultDotsStyle
+        });
+      case HeaderFragment.State.Reenter:
+        return renderPasscodeVisualizer({
+          style: style.reenterDotsStyle
+        });
+
+        break;
+      case HeaderFragment.State.Success:
+        return renderPasscodeVisualizer({
+          style: style.successDotsStyle
+        });
+
+        break;
+      case HeaderFragment.State.Error:
+        return renderPasscodeVisualizer({
+          style: style.errorDotsStyle
+        });
+
+        break;
+    }
   }
 
   render() {

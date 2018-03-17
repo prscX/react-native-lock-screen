@@ -4,11 +4,15 @@ import {
   ViewPropTypes,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from "react-native";
 import PropTypes from "prop-types";
 
 import Ripple from "react-native-material-ripple"
+
+import checked from "../../assets/checked.png";
+import backspace from "../../assets/backspace.png";
 
 import style from './Pin.style'
 
@@ -25,9 +29,18 @@ class Pin extends Component {
   render() {
     const { onPress, value } = this.props
 
+    let pin
+    if (value === 10) {
+      pin = <Image source={checked} style={style.image} />
+    } else if (value === 11) {
+      pin = <Image source={backspace} style={style.image} />;
+    } else {
+      pin = <Text style={style.text}>{this.props.value}</Text>;
+    }
+
     return <Ripple onPress={onPress}>
         <View style={style.container}>
-          <Text style={style.text}>{this.props.value}</Text>
+          {pin}
         </View>
       </Ripple>;
       

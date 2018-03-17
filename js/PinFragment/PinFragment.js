@@ -8,14 +8,22 @@ import style from './PinFragment.style'
 
 class PinFragment extends Component {
   static propTypes = {
-    onPress: PropTypes.func
+    onAdd: PropTypes.func,
+    onRemove: PropTypes.func,
+    onDone: PropTypes.func
   }
 
   static defaultProps = {
   }
 
   _onPress (value) {
-    this.props.onPress && this.props.onPress(value)
+    if (value === 10) {
+      this.props.onDone && this.props.onDone(value);
+    } else if (value === 11) {
+      this.props.onRemove && this.props.onRemove(value);
+    } else {
+      this.props.onAdd && this.props.onAdd(value);
+    }
   }
 
   _renderPin (value) {
@@ -42,9 +50,9 @@ class PinFragment extends Component {
           {this._renderPin(9)}
         </View>
         <View style={style.pinRowContainer}>
-          {this._renderPin()}
+          {this._renderPin(10)}
           {this._renderPin(0)}
-          {this._renderPin()}
+          {this._renderPin(11)}
         </View>
       </View>;
   }

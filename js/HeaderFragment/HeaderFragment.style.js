@@ -29,6 +29,30 @@ const style = StyleSheet.create({
     fontSize: 24,
     color: "#FFFFFF"
   },
+  reenterTitleStyle: {
+    fontSize: 24,
+    color: "#FFFFFF"
+  },
+  successTitleStyle: {
+    fontSize: 24,
+    color: "#FFFFFF"
+  },
+  errorTitleStyle: {
+    fontSize: 24,
+    color: "#FFFFFF"
+  },
+  defaultDotsStyle: {
+    backgroundColor: "#FFFFFF"
+  },
+  reenterDotsStyle: {
+    backgroundColor: "#FFFFFF"
+  },
+  successDotsStyle: {
+    backgroundColor: "#037d50"
+  },
+  errorDotsStyle: {
+    backgroundColor: "#be0000"
+  },
   passcodeVisualizerContainer: {
     width: "100%",
     alignItems: "center",
