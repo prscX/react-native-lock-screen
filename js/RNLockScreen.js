@@ -65,7 +65,7 @@ class RNLockScreen extends Component {
 
   _onDone = () => {
     this.setState({
-      state: 2
+      state: 3
     });
   }
 

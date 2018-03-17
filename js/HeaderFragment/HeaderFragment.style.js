@@ -10,7 +10,7 @@ const style = StyleSheet.create({
     alignItems: "center"
   },
   circleContainer: {
-    height: 200,
+    flex: 1,
     justifyContent: "center"
   },
   circle: {
@@ -55,8 +55,10 @@ const style = StyleSheet.create({
   },
   passcodeVisualizerContainer: {
     width: "100%",
+    height: 50,
     alignItems: "center",
-    padding: 20
+    padding: 20,
+    backgroundColor: '#4a8df3'
   }
 });
 

@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { StyleSheet, ViewPropTypes, View, Text, Image } from "react-native";
 import PropTypes from "prop-types";
 
+import * as Animatable from "react-native-animatable";
+
+import LinePinVisualizer from "./LinePinVisualizer";
+
 import style from "./HeaderFragment.style";
 
 import lockIcon from "../../assets/lock.png";
 import successIcon from "../../assets/lock.png";
 
-import LinePinVisualizer from "./LinePinVisualizer";
 
 class HeaderFragment extends Component {
   static State = {
@@ -116,11 +119,13 @@ class HeaderFragment extends Component {
       return this.props.renderPasscodeVisualizer();
 
     let renderPasscodeVisualizer = props => {
-      return (
-        <View style={style.passcodeVisualizerContainer}>
-          <LinePinVisualizer dots={this.props.dots} style={props.style} />
-        </View>
-      );
+      return <View style={style.passcodeVisualizerContainer}>
+          <Animatable.View ref={ref => {
+              this.view = ref;
+            }}>
+            <LinePinVisualizer dots={this.props.dots} style={props.style} />
+          </Animatable.View>;
+        </View>;
     };
 
     switch (this.props.state) {
@@ -146,6 +151,12 @@ class HeaderFragment extends Component {
         });
 
         break;
+    }
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (this.props.state === HeaderFragment.State.Error && prevProps.state !== HeaderFragment.State.Error) {
+      this.view.shake(800)
     }
   }
 
