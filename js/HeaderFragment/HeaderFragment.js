@@ -34,7 +34,8 @@ class HeaderFragment extends Component {
     errorTitleStyle: PropTypes.number,
     errorIcon: PropTypes.number,
 
-    state: PropTypes.number
+    state: PropTypes.number,
+    dots: PropTypes.number
   };
 
   static defaultProps = {
@@ -54,7 +55,8 @@ class HeaderFragment extends Component {
     errorTitleStyle: style.errorTitleStyle,
     errorIcon: undefined,
 
-    state: 0
+    state: 0,
+    dots: 0
   };
 
   _renderState() {
@@ -113,7 +115,7 @@ class HeaderFragment extends Component {
 
     return (
       <View style={style.passcodeVisualizerContainer}>
-        <LinePinVisualizer dots={10} />
+        <LinePinVisualizer dots={this.props.dots} />
       </View>
     );
   }
