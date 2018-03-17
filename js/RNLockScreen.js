@@ -3,12 +3,8 @@ import React, { Component } from "react";
 import { StyleSheet, ViewPropTypes, View, Text, Image } from "react-native";
 import PropTypes from "prop-types";
 
-import OnLayout from 'react-native-on-layout'
-
 import { HeaderFragment } from './HeaderFragment'
 import { PinFragment } from './PinFragment'
-
-import { RNLock } from './RNLock'
 
 import style from './RNLockScreen.style'
 
