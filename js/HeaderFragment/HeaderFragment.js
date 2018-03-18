@@ -135,29 +135,44 @@ class HeaderFragment extends Component {
       );
     };
 
+    let styles
     switch (this.props.state) {
       case HeaderFragment.State.Default:
+        styles = [style.defaultDotsStyle]
+        if (this.props.defaultState) {
+          styles.push({...this.props.defaultState.dotsStyle});
+        }
+
         return renderPasscodeVisualizer({
-          style: style.defaultDotsStyle
+          style: styles
         });
       case HeaderFragment.State.Reenter:
-        return renderPasscodeVisualizer({
-          style: style.reenterDotsStyle
-        });
+        styles = [style.reenterDotsStyle]
+        if (this.props.reenterState) {
+          styles.push({...this.props.reenterState.dotsStyle});
+        }
 
-        break;
+        return renderPasscodeVisualizer({
+          style: styles
+        });
       case HeaderFragment.State.Success:
-        return renderPasscodeVisualizer({
-          style: style.successDotsStyle
-        });
+        styles = [style.successDotsStyle]
+        if (this.props.successState) {
+          styles.push({...this.props.successState.dotsStyle});
+        }
 
-        break;
+        return renderPasscodeVisualizer({
+          style: styles
+        });
       case HeaderFragment.State.Error:
-        return renderPasscodeVisualizer({
-          style: style.errorDotsStyle
-        });
+        styles = [style.errorDotsStyle]
+        if (this.props.errorState) {
+          styles.push({...this.props.errorState.dotsStyle});
+        }
 
-        break;
+        return renderPasscodeVisualizer({
+          style: styles
+        });
     }
   }
 
