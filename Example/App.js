@@ -23,16 +23,20 @@ export default class App extends Component<Props> {
 
   render() {
     return <View style={styles.container}>
-        <RNLockScreen
-          mode={1}
-          onCapture={(lock) => {
-            console.log('lock: ' + lock)
+        <RNLockScreen mode={1} onCapture={lock => {
+            console.log("lock: " + lock);
+          }} onVerify={lock => {
+            if (lock == 123) return true;
+            else return false;
           }}
-          onVerify={(lock) => {
-            if (lock == 123)
-              return true
-            else
-              return false
+          defaultState={{
+            title: 'enter'
+          }}
+          successState={{
+            title: 'success'
+          }}
+          errorState={{
+            title: 'not macthed'
           }}
         />
       </View>;

@@ -10,7 +10,9 @@ class PinFragment extends Component {
   static propTypes = {
     onAdd: PropTypes.func,
     onRemove: PropTypes.func,
-    onDone: PropTypes.func
+    onDone: PropTypes.func,
+
+    backgroundColor: PropTypes.string
   }
 
   static defaultProps = {
@@ -33,7 +35,12 @@ class PinFragment extends Component {
   }
 
   _renderPinRows () {
-    return <View style={style.pinContainer}>
+    let styles = [style.pinContainer];
+    if (this.props.backgroundColor) {
+      styles.push({ backgroundColor: this.props.backgroundColor });
+    }
+
+    return <View style={styles}>
         <View style={style.pinRowContainer}>
           {this._renderPin(1)}
           {this._renderPin(2)}

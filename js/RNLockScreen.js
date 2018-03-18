@@ -16,7 +16,14 @@ class RNLockScreen extends Component {
 
   static propTypes = {
     lock: PropTypes.number,
-    mode: PropTypes.number
+    mode: PropTypes.number,
+    backgroundImage: PropTypes.number,
+    headerFragmentColor: PropTypes.string,
+    lockFragmentColor: PropTypes.string,
+    defaultState: PropTypes.object,
+    reenterState: PropTypes.object,
+    successState: PropTypes.object,
+    errorState: PropTypes.object
   }
 
   static defaultProps = {
@@ -39,7 +46,16 @@ class RNLockScreen extends Component {
       dots = this.state.lock.toString().length
     }
 
-    return <HeaderFragment style={style.headerContainer} dots={dots} state={this.state.state} />;
+    return <HeaderFragment
+      style={[style.headerContainer]}
+      dots={dots}
+      state={this.state.state}
+      backgroundColor={this.props.headerFragmentColor}
+      defaultState={this.props.defaultState}
+      reenterState={this.props.reenterState}
+      successState={this.props.successState}
+      errorState={this.props.errorState}
+    />;
   }
 
   _renderSeparator () {
@@ -98,8 +114,18 @@ class RNLockScreen extends Component {
   }
 
   _renderLockFragment() {
-    return <View style={style.lockContainer}>
-        <PinFragment onAdd={this._onAdd} onRemove={this._onRemove} onDone={this._onDone} />
+    let styles = [style.lockContainer];
+    if (this.props.lockFragmentColor) {
+      styles.push({ backgroundColor: this.props.lockFragmentColor });
+    }
+    
+    return <View style={styles}>
+        <PinFragment
+          onAdd={this._onAdd}
+          onRemove={this._onRemove}
+          onDone={this._onDone}
+          backgroundColor={this.props.lockFragmentColor}
+        />
       </View>;
   }
 

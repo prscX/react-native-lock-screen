@@ -23,42 +23,41 @@ class HeaderFragment extends Component {
   static propTypes = {
     ...ViewPropTypes,
 
-    defaultTitle: PropTypes.string,
-    defaultTitleStyle: PropTypes.number,
-    defaultIcon: PropTypes.number,
-
-    reenterTitle: PropTypes.string,
-    reenterTitleStyle: PropTypes.number,
-    reenterIcon: PropTypes.number,
-
-    successTitle: PropTypes.string,
-    successTitleStyle: PropTypes.number,
-    successIcon: PropTypes.number,
-
-    errorTitle: PropTypes.string,
-    errorTitleStyle: PropTypes.number,
-    errorIcon: PropTypes.number,
+    defaultState: PropTypes.object,
+    reenterState: PropTypes.object,
+    successState: PropTypes.object,
+    errorState: PropTypes.object,
 
     state: PropTypes.number,
-    dots: PropTypes.number
+    dots: PropTypes.number,
+
+    backgroundColor: PropTypes.string
   };
 
   static defaultProps = {
-    defaultTitle: "Enter a passcode",
-    defaultTitleStyle: style.defaultTitleStyle,
-    defaultIcon: lockIcon,
+    defaultState: {
+      title: "Enter a passcode",
+      titleStyle: style.defaultTitleStyle,
+      icon: lockIcon
+    },
 
-    reenterTitle: "Re-enter new passcode",
-    reenterTitleStyle: style.reenterTitleStyle,
-    reenterIcon: lockIcon,
+    reenterState: {
+      title: "Re-enter new passcode",
+      titleStyle: style.reenterTitleStyle,
+      icon: lockIcon,
+    },
 
-    successTitle: "Passcode is correct",
-    successTitleStyle: style.successTitleStyle,
-    successIcon: successIcon,
+    successState: {
+      title: "Passcode is correct",
+      titleStyle: style.successTitleStyle,
+      icon: successIcon
+    },
 
-    errorTitle: "Passcode do not match",
-    errorTitleStyle: style.errorTitleStyle,
-    errorIcon: lockIcon,
+    errorState: {
+      title: "Passcode do not match",
+      titleStyle: style.errorTitleStyle,
+      icon: lockIcon
+    },
 
     state: 0,
     dots: 0
@@ -67,37 +66,36 @@ class HeaderFragment extends Component {
   _renderState() {
     if (this.props.renderState) return this.props.renderState();
 
+    let props;
     switch (this.props.state) {
       case HeaderFragment.State.Default:
-        return renderState({
-          title: this.props.defaultTitle,
-          titleStyle: this.props.defaultTitleStyle,
-          icon: this.props.defaultIcon
-        });
+        props = HeaderFragment.defaultProps.defaultState
+        if (this.props.defaultState) {
+          props = Object.assign(props, this.props.defaultState)
+        }
+
+        return renderState({...props});
       case HeaderFragment.State.Reenter:
-        return renderState({
-          title: this.props.reenterTitle,
-          titleStyle: this.props.reenterTitleStyle,
-          icon: this.props.reenterIcon
-        });
+        props = HeaderFragment.defaultProps.reenterState
+        if (this.props.reenterState) {
+          props = Object.assign(props, this.props.reenterState)
+        }
 
-        break;
+        return renderState({...props});
       case HeaderFragment.State.Success:
-        return renderState({
-          title: this.props.successTitle,
-          titleStyle: this.props.successTitleStyle,
-          icon: this.props.successIcon
-        });
+        props = HeaderFragment.defaultProps.successState
+        if (this.props.successState) {
+          props = Object.assign(props, this.props.successState)
+        }
 
-        break;
+        return renderState({...props});
       case HeaderFragment.State.Error:
-        return renderState({
-          title: this.props.errorTitle,
-          titleStyle: this.props.errorTitleStyle,
-          icon: this.props.errorIcon
-        });
+        props = HeaderFragment.defaultProps.errorState
+        if (this.props.errorState) {
+          props = Object.assign(props, this.props.errorState)
+        }
 
-        break;
+        return renderState({...props});
     }
 
     function renderState(props) {
@@ -119,8 +117,13 @@ class HeaderFragment extends Component {
       return this.props.renderPasscodeVisualizer();
 
     let renderPasscodeVisualizer = props => {
+      let styles = [style.passcodeVisualizerContainer];
+      if (this.props.backgroundColor) {
+        styles.push({ backgroundColor: this.props.backgroundColor });
+      }
+
       return (
-        <View style={style.passcodeVisualizerContainer}>
+        <View style={styles}>
           <Animatable.View
             ref={ref => {
               this.view = ref;
@@ -168,12 +171,15 @@ class HeaderFragment extends Component {
   }
 
   render() {
-    return (
-      <View style={style.container}>
+    let styles = [style.container];
+    if (this.props.backgroundColor) {
+      styles.push({ backgroundColor: this.props.backgroundColor });
+    }
+
+    return <View style={styles}>
         {this._renderState()}
         {this._renderPasscodeVisualizer()}
-      </View>
-    );
+      </View>;
   }
 }
 
