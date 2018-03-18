@@ -27,6 +27,7 @@ class RNLockScreen extends Component {
   }
 
   static defaultProps = {
+    primaryLock: -1,
     lock: -1,
     mode: 0
   }
@@ -36,14 +37,14 @@ class RNLockScreen extends Component {
 
     this.state = {
       lock: RNLockScreen.defaultProps.lock,
-      state: 0
+      state: HeaderFragment.State.Default
     }
   }
 
   _renderHeaderFragment() {
     let dots = 0
-    if (this.state.lock !== -1) {
-      dots = this.state.lock.toString().length
+    if (this.state.lock !== RNLockScreen.defaultProps.lock) {
+      dots = this.state.lock.toString().length;      
     }
 
     return <HeaderFragment
@@ -95,7 +96,25 @@ class RNLockScreen extends Component {
   }
 
   _onCapture = () => {
-    this.props.onCapture && this.props.onCapture(this.state.lock)
+    if (this.state.state === HeaderFragment.State.Default) {
+      this.setState({
+        primaryLock: this.state.lock,
+        lock: RNLockScreen.defaultProps.lock,
+        state: HeaderFragment.State.Reenter
+      });
+    } else if (this.state.state === HeaderFragment.State.Reenter || this.state.state === HeaderFragment.State.Error) {
+      if (this.state.primaryLock === this.state.lock) {
+        this.setState({
+          state: HeaderFragment.State.Success
+        });
+
+        this.props.onCapture && this.props.onCapture(this.state.lock);
+      } else {
+        this.setState({
+          state: HeaderFragment.State.Error
+        });
+      }
+    }
   }
 
   _onVerify = () => {
