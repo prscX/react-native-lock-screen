@@ -9,7 +9,8 @@ const style = StyleSheet.create({
   pinContainer: {
     width: "80%",
     height: "80%",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    backgroundColor: '#FFFFFF'
   },
   pinRowContainer: {
     flexDirection: "row",
