@@ -4,14 +4,15 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#4a8df3",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "space-around"
   },
   circleGroup: {
+    paddingTop: 20,
     alignItems: "center"
   },
   circleContainer: {
-    flex: 1,
-    justifyContent: "center"
+    paddingBottom: 20
   },
   circle: {
     width: 100,
@@ -58,7 +59,7 @@ const style = StyleSheet.create({
     height: 50,
     alignItems: "center",
     padding: 20,
-    backgroundColor: '#4a8df3'
+    backgroundColor: "#4a8df3"
   }
 });
 
