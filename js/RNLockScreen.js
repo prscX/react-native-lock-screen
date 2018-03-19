@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 import { HeaderFragment } from './HeaderFragment'
 import { PinFragment } from './PinFragment'
+import { PatternFragment } from "./PatternFragment";
 
 import style from './RNLockScreen.style'
 
@@ -14,9 +15,15 @@ class RNLockScreen extends Component {
     Verify: 1
   }
 
+  static Type = {
+    Pin: 0,
+    Pattern: 1
+  }
+
   static propTypes = {
     lock: PropTypes.number,
     mode: PropTypes.number,
+    type: PropTypes.number,
     backgroundImage: PropTypes.number,
     headerFragmentColor: PropTypes.string,
     lockFragmentColor: PropTypes.string,
@@ -29,6 +36,7 @@ class RNLockScreen extends Component {
   static defaultProps = {
     primaryLock: -1,
     lock: -1,
+    type: 0,
     mode: 0
   }
 
@@ -138,14 +146,25 @@ class RNLockScreen extends Component {
       styles.push({ backgroundColor: this.props.lockFragmentColor });
     }
     
-    return <View style={styles}>
-        <PinFragment
-          onAdd={this._onAdd}
-          onRemove={this._onRemove}
-          onDone={this._onDone}
-          backgroundColor={this.props.lockFragmentColor}
-        />
-      </View>;
+    if (this.props.type === RNLockScreen.Type.Pin) {
+      return <View style={styles}>
+          <PinFragment
+            onAdd={this._onAdd}
+            onRemove={this._onRemove}
+            onDone={this._onDone}
+            backgroundColor={this.props.lockFragmentColor}
+          />
+        </View>;
+    } else if (this.props.type === RNLockScreen.Type.Pattern) {
+      return <View style={styles}>
+          <PatternFragment
+            onAdd={this._onAdd}
+            onRemove={this._onRemove}
+            onDone={this._onDone}
+            backgroundColor={this.props.lockFragmentColor}
+          />
+        </View>;
+    }
   }
 
   render() {

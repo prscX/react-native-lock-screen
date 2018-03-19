@@ -124,13 +124,13 @@ class HeaderFragment extends Component {
 
       return (
         <View style={styles}>
-          <Animatable.View
+          {/* <Animatable.View
             ref={ref => {
               this.view = ref;
-            }}
-          >
+            // }}
+          > */}
             <LinePinVisualizer dots={this.props.dots} style={props.style} />
-          </Animatable.View>;
+          {/* </Animatable.View>; */}
         </View>
       );
     };
