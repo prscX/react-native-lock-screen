@@ -3,6 +3,7 @@ package ui.lockscreen;
 import android.app.Activity;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -47,6 +48,13 @@ public class RNLockScreen extends ViewGroupManager<ViewGroup> {
     public void props(final FrameLayout frameLayout, ReadableMap props) {
         if (patternLockView == null) {
             patternLockView = new PatternLockView(context);
+
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+            params.gravity = Gravity.CENTER_HORIZONTAL;
+
+            patternLockView.setLayoutParams(params);
+
+            patternLockView.setMinimumWidth(props.getInt("width") + 1000);
 
             patternLockView.setDotCount(props.getInt("dotCount") / 3);
             patternLockView.setDotNormalSize(props.getInt("dotNormalSize"));
