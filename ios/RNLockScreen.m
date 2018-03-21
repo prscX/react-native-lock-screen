@@ -3,7 +3,10 @@
 
 @implementation RNLockScreen
 
+@synthesize bridge = _bridge;
+
 NSString *lock;
+TQGestureLockView *lockView;
 
 - (dispatch_queue_t)methodQueue {
     return dispatch_get_main_queue();
@@ -24,6 +27,8 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
 
     NSDictionary *props = [json objectForKey: @"pattern"];
 
+    lock = [[json objectForKey: @"lock"] stringValue];
+    
     NSNumber *dotCount = [json objectForKey: @"dotCount"];
     NSNumber *dotNormalSize = [json objectForKey: @"dotNormalSize"];
     NSNumber *dotSelectedSize = [json objectForKey: @"dotSelectedSize"];
@@ -53,9 +58,10 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
     drawManager.edgeSpacingInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
     drawManager.hollowCircleBorderWidth = 0.5;
 
-    TQGestureLockView *lockView = [[TQGestureLockView alloc] initWithFrame:CGRectMake(0, 0, [width floatValue], [height floatValue]) drawManager: drawManager];
+    lockView = [[TQGestureLockView alloc] initWithFrame:CGRectMake(0, 0, [width floatValue], [height floatValue]) drawManager: drawManager];
 
     lockView.delegate = self;
+    lockView.reactTag = view.reactTag;
 
     [view addSubview: lockView];
 }
@@ -64,11 +70,21 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
 #pragma mark  TQGestureLockViewDelegate
 
 - (void)gestureLockView:(TQGestureLockView *)gestureLockView lessErrorSecurityCodeSting:(NSString *)securityCodeSting {
-    if ([securityCodeSting isEqualToString: lock]) {
-        [gestureLockView setNeedsDisplayGestureLockErrorState: NO];
-    } else {
-        [gestureLockView setNeedsDisplayGestureLockErrorState: YES];
+    
+    if (![lock isEqualToString: @"-1"]) {
+        if ([securityCodeSting isEqualToString: lock]) {
+            [gestureLockView setNeedsDisplayGestureLockErrorState: NO];
+        } else {
+            [gestureLockView setNeedsDisplayGestureLockErrorState: YES];
+        }
     }
+    
+    NSDictionary *event = @{
+                            @"target": lockView.reactTag,
+                            @"pattern": securityCodeSting,
+                            @"eventType": @"completed",
+                            };
+    [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
 }
 
 

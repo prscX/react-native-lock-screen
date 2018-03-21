@@ -65,7 +65,7 @@ class PatternFragment extends Component {
 
       this.props.onAdd && this.props.onAdd(pattern);	
     } else if (event.nativeEvent.eventType === "completed") {	
-      this.props.onDone && this.props.onDone(event.nativeEvent.pattern);	
+      this.props.onDone && this.props.onDone(parseInt(event.nativeEvent.pattern))
     } else if (event.nativeEvent.eventType === "cleared") {	
       this.props.onCleared && this.props.onCleared();	
     }	
@@ -90,6 +90,8 @@ class PatternFragment extends Component {
           if (width == 0 && height == 0) {
             return null
           } else {
+            console.log('lock: ' + this.props.lock)
+
             return <LockScreen
               style={{ height: height, width: width }}
               props={{

@@ -95,28 +95,35 @@ class RNLockScreen extends Component {
     this.setState({ lock: lock.substring(0, lock.length - 1) });
   }
 
-  _onDone = () => {
+  _onDone = (pin) => {
+    let lock
+    if (this.state.lock === -1 && pin !== -1) {
+      lock = pin
+    } else {
+      lock = this.state.lock
+    }
+
     if (this.props.mode === RNLockScreen.Mode.Capture) {
-      this._onCapture()
+      this._onCapture(lock)
     } else if (this.props.mode === RNLockScreen.Mode.Verify) {
-      this._onVerify()
+      this._onVerify(lock)
     }
   }
 
-  _onCapture = () => {
+  _onCapture = (lock) => {
     if (this.state.state === HeaderFragment.State.Default) {
       this.setState({
-        primaryLock: this.state.lock,
+        primaryLock: lock,
         lock: RNLockScreen.defaultProps.lock,
         state: HeaderFragment.State.Reenter
       });
     } else if (this.state.state === HeaderFragment.State.Reenter || this.state.state === HeaderFragment.State.Error) {
-      if (this.state.primaryLock === this.state.lock) {
+      if (this.state.primaryLock === lock) {
         this.setState({
           state: HeaderFragment.State.Success
         });
 
-        this.props.onCapture && this.props.onCapture(this.state.lock);
+        this.props.onCapture && this.props.onCapture(lock);
       } else {
         if (this.props.type === RNLockScreen.Type.Pattern) {
           this.setState({
@@ -132,9 +139,9 @@ class RNLockScreen extends Component {
     }
   }
 
-  _onVerify = () => {
+  _onVerify = (lock) => {
     if (this.props.onVerify) {
-      let verified = this.props.onVerify(this.state.lock)
+      let verified = this.props.onVerify(lock)
       if (verified) {
         this.setState({
           state: HeaderFragment.State.Success
