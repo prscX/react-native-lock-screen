@@ -45,34 +45,41 @@ public class RNLockScreen extends ViewGroupManager<ViewGroup> {
 
     @ReactProp(name = "props")
     public void props(final FrameLayout frameLayout, ReadableMap props) {
-        patternLockView = new PatternLockView(context);
+        if (patternLockView == null) {
+            patternLockView = new PatternLockView(context);
 
-        patternLockView.setDotCount(props.getInt("dotCount"));
-        patternLockView.setDotNormalSize(props.getInt("dotNormalSize"));
-        patternLockView.setDotSelectedSize(props.getInt("dotSelectedSize"));
-        patternLockView.setPathWidth(props.getInt("pathWidth"));
-        patternLockView.setAspectRatioEnabled(props.getBoolean("aspectRatioEnabled"));
+            patternLockView.setDotCount(props.getInt("dotCount") / 3);
+            patternLockView.setDotNormalSize(props.getInt("dotNormalSize"));
+            patternLockView.setDotSelectedSize(props.getInt("dotSelectedSize"));
+            patternLockView.setPathWidth(props.getInt("pathWidth"));
+            patternLockView.setAspectRatioEnabled(props.getBoolean("aspectRatioEnabled"));
 
-        if (props.getString("aspectRatio").equalsIgnoreCase("SQUARE")) {
-            patternLockView.setAspectRatio(PatternLockView.AspectRatio.ASPECT_RATIO_SQUARE);
-        } else if (props.getString("aspectRatio").equalsIgnoreCase("WIDTH_BIAS")) {
-            patternLockView.setAspectRatio(PatternLockView.AspectRatio.ASPECT_RATIO_WIDTH_BIAS);
-        } else if (props.getString("aspectRatio").equalsIgnoreCase("HEIGHT_BIAS")) {
-            patternLockView.setAspectRatio(PatternLockView.AspectRatio.ASPECT_RATIO_HEIGHT_BIAS);
+            if (props.getString("aspectRatio").equalsIgnoreCase("SQUARE")) {
+                patternLockView.setAspectRatio(PatternLockView.AspectRatio.ASPECT_RATIO_SQUARE);
+            } else if (props.getString("aspectRatio").equalsIgnoreCase("WIDTH_BIAS")) {
+                patternLockView.setAspectRatio(PatternLockView.AspectRatio.ASPECT_RATIO_WIDTH_BIAS);
+            } else if (props.getString("aspectRatio").equalsIgnoreCase("HEIGHT_BIAS")) {
+                patternLockView.setAspectRatio(PatternLockView.AspectRatio.ASPECT_RATIO_HEIGHT_BIAS);
+            }
+
+            patternLockView.setTactileFeedbackEnabled(true);
+            patternLockView.setNormalStateColor(Color.parseColor(props.getString("normalStateColor")));
+            patternLockView.setCorrectStateColor(Color.parseColor(props.getString("correctStateColor")));
+            patternLockView.setWrongStateColor(Color.parseColor(props.getString("wrongStateColor")));
+            patternLockView.setDotAnimationDuration(props.getInt("dotAnimationDuration"));
+            patternLockView.setPathEndAnimationDuration(props.getInt("pathEndAnimationDuration"));
+
+            patternLockView.addPatternLockListener(patternLockViewListener);
+
+            frameLayout.removeAllViews();
+            frameLayout.addView(patternLockView);
         }
 
-        patternLockView.setNormalStateColor(Color.parseColor(props.getString("normalStateColor")));
-        patternLockView.setCorrectStateColor(Color.parseColor(props.getString("correctStateColor")));
-        patternLockView.setWrongStateColor(Color.parseColor(props.getString("wrongStateColor")));
-        patternLockView.setDotAnimationDuration(props.getInt("dotAnimationDuration"));
-        patternLockView.setPathEndAnimationDuration(props.getInt("pathEndAnimationDuration"));
+        lock = props.getInt("lock");
 
-//        lock = Integer.parseInt(props.getString("lock"));
-
-        patternLockView.addPatternLockListener(patternLockViewListener);
-
-        frameLayout.removeAllViews();
-        frameLayout.addView(patternLockView);
+        if (props.getBoolean("clear")) {
+            patternLockView.clearPattern();
+        }
     }
 
     private PatternLockViewListener patternLockViewListener = new PatternLockViewListener() {
@@ -90,15 +97,18 @@ public class RNLockScreen extends ViewGroupManager<ViewGroup> {
 
         @Override
         public void onComplete(List<PatternLockView.Dot> pattern) {
-//            PatternLockView lockView = (PatternLockView) frameLayout.getChildAt(0);
-//            if (lock == Integer.parseInt(PatternLockUtils.patternToString(patternLockView, pattern))) {
-//                lockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
-//            } else {
-//                lockView.setViewMode(PatternLockView.PatternViewMode.WRONG);
-//            }
-//
-//            context.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(
-//                    new LockEvent(frameLayout.getId(),"completed", PatternLockUtils.patternToString(patternLockView, pattern)));
+            PatternLockView lockView = (PatternLockView) frameLayout.getChildAt(0);
+
+            if (lock != -1) {
+                if (lock == Integer.parseInt(PatternLockUtils.patternToString(patternLockView, pattern))) {
+                    lockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
+                } else {
+                    lockView.setViewMode(PatternLockView.PatternViewMode.WRONG);
+                }
+            }
+
+            context.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(
+                    new LockEvent(frameLayout.getId(),"completed", PatternLockUtils.patternToString(patternLockView, pattern)));
         }
 
         @Override

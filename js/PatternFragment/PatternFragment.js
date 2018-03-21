@@ -38,7 +38,8 @@ class PatternFragment extends Component {
     accessibilityComponentType: PropTypes.string,
     nativeID: PropTypes.string,
 
-    lock: PropTypes.number
+    lock: PropTypes.number,
+    clear: PropTypes.bool
   };
 
   static defaultProps = {
@@ -53,18 +54,29 @@ class PatternFragment extends Component {
     wrongStateColor: "#fd1c00",
     dotAnimationDuration: 200,
     pathEndAnimationDuration: 100,
-    lock: -1
+    lock: -1,
+    clear: false
   };
 
-  _onPress(value) {
-    if (value === 10) {
-      this.props.onDone && this.props.onDone(value);
-    } else if (value === 11) {
-      this.props.onRemove && this.props.onRemove(value);
-    } else {
-      this.props.onAdd && this.props.onAdd(value);
-    }
-  }
+  _onChange = event => {	
+    if (event.nativeEvent.eventType === "progress") {	
+      let pattern = ''
+      event.nativeEvent.pattern && (pattern = event.nativeEvent.pattern.slice(-1))
+
+      this.props.onAdd && this.props.onAdd(pattern);	
+    } else if (event.nativeEvent.eventType === "completed") {	
+      this.props.onDone && this.props.onDone(event.nativeEvent.pattern);	
+    } else if (event.nativeEvent.eventType === "cleared") {	
+      this.props.onCleared && this.props.onCleared();	
+    }	
+	
+    console.log(	
+      "Event: " +	
+        event.nativeEvent.eventType +	
+        ", Pattern: " +	
+        event.nativeEvent.pattern	
+    );	
+  };
 
   _renderPattern() {
     let styles = [style.pinContainer];
@@ -93,7 +105,9 @@ class PatternFragment extends Component {
                   correctStateColor: this.props.correctStateColor,
                   wrongStateColor: this.props.wrongStateColor,
                   dotAnimationDuration: this.props.dotAnimationDuration,
-                  pathEndAnimationDuration: this.props.pathEndAnimationDuration
+                  pathEndAnimationDuration: this.props.pathEndAnimationDuration,
+                  lock: this.props.lock,
+                  clear: this.props.clear
               }}
               onChange={this._onChange}
             />

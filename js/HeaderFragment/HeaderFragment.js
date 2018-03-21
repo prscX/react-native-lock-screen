@@ -181,7 +181,7 @@ class HeaderFragment extends Component {
       this.props.state === HeaderFragment.State.Error &&
       prevProps.state !== HeaderFragment.State.Error
     ) {
-      this.view.shake(800);
+      // this.view.shake(800);
     }
   }
 

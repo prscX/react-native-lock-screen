@@ -118,9 +118,16 @@ class RNLockScreen extends Component {
 
         this.props.onCapture && this.props.onCapture(this.state.lock);
       } else {
-        this.setState({
-          state: HeaderFragment.State.Error
-        });
+        if (this.props.type === RNLockScreen.Type.Pattern) {
+          this.setState({
+            state: HeaderFragment.State.Error,
+            lock: RNLockScreen.defaultProps.lock
+          });
+        } else if (this.props.type === RNLockScreen.Type.Pin) {
+          this.setState({
+            state: HeaderFragment.State.Error
+          });
+        }
       }
     }
   }
@@ -162,6 +169,8 @@ class RNLockScreen extends Component {
             onRemove={this._onRemove}
             onDone={this._onDone}
             backgroundColor={this.props.lockFragmentColor}
+            clear={this.state.state === HeaderFragment.State.Default ? false : true }
+            lock={this.state.state === HeaderFragment.State.Default ? -1 : this.state.primaryLock}
           />
         </View>;
     }
