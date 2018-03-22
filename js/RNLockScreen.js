@@ -3,11 +3,15 @@ import React, { Component } from "react";
 import { StyleSheet, ViewPropTypes, View, Text, Image } from "react-native";
 import PropTypes from "prop-types";
 
+import SvgUri from "react-native-svg-uri";
+
 import { HeaderFragment } from './HeaderFragment'
 import { PinFragment } from './PinFragment'
 import { PatternFragment } from "./PatternFragment";
 
 import style from './RNLockScreen.style'
+
+import watermark from '../assets/watermark.svg'
 
 class RNLockScreen extends Component {
   static Mode = {
@@ -55,22 +59,37 @@ class RNLockScreen extends Component {
       dots = this.state.lock.toString().length;      
     }
 
-    return <HeaderFragment
-      style={[style.headerContainer]}
-      dots={dots}
-      state={this.state.state}
-      backgroundColor={this.props.headerFragmentColor}
-      defaultState={this.props.defaultState}
-      reenterState={this.props.reenterState}
-      successState={this.props.successState}
-      errorState={this.props.errorState}
-    />;
+    return <View style={{ flex: 1 }}>
+      <HeaderFragment
+        style={[style.headerContainer]}
+        dots={dots}
+        state={this.state.state}
+        backgroundColor={this.props.headerFragmentColor}
+        defaultState={this.props.defaultState}
+        reenterState={this.props.reenterState}
+        successState={this.props.successState}
+        errorState={this.props.errorState}
+      />
+      {this._renderSeparator()}
+    </View>
   }
 
   _renderSeparator () {
     if (this.props.renderSeparator) return this.props.renderSeparator()
 
-    return <View/>
+    return <View style={{ position: 'absolute', bottom: -20, height: 100, width: '100%'}}>
+      <SvgUri
+        width={1200}
+        height={100}
+        source={watermark}
+      />
+    </View>
+    return <SvgUri
+        width="100%"
+        height="200"
+        style={{position: 'absolute', zIndex: 10}}
+        source={watermark}
+      />
   }
 
   _onAdd = (pin) => {

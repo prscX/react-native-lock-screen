@@ -7,8 +7,11 @@ const style = StyleSheet.create({
   headerContainer: {
     flex: 1
   },
+  speratorContainer: {
+
+  },
   lockContainer: {
-    flex: 2
+    flex: 1.5
   }
 });
 

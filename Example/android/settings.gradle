@@ -1,4 +1,6 @@
 rootProject.name = 'Example'
+include ':react-native-svg'
+project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-svg/android')
 include ':react-native-lock-screen'
 project(':react-native-lock-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-lock-screen/android')
 

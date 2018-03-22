@@ -17,7 +17,9 @@
     },
     "dependencies": {
         "react-native-animatable": "1.2.4",
-        "react-native-on-layout": "2.0.2"
+        "react-native-on-layout": "2.0.2",
+        "react-native-svg": "6.3.1",
+        "react-native-svg-uri": "1.2.3"
     },
     "devDependencies": {
         "prettier-pack": "0.0.5"

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F5EA751D6789EB5A3E63B74 /* libPods-RNLockScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2064D7B1BA962F966874B482 /* libPods-RNLockScreen.a */; };
 		B3E7B58A1CC2AC0600A0062D /* RNLockScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNLockScreen.m */; };
 		CE7B243A205FF6F000B3754E /* libTQGestureLockView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7B2439205FF6DF00B3754E /* libTQGestureLockView.a */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7B243A205FF6F000B3754E /* libTQGestureLockView.a in Frameworks */,
+				4F5EA751D6789EB5A3E63B74 /* libPods-RNLockScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
