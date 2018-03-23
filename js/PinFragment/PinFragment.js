@@ -29,12 +29,16 @@ class PinFragment extends Component {
   }
 
   _renderPin (value) {
+    if (this.props.renderPin) return this.props.renderPin()
+
     return <Pin value={value} onPress={() => {
       this._onPress(value)
     }}></Pin>
   }
 
   _renderPinRows () {
+    if (this.props.renderPinRows) return this.props.renderPinRows() 
+
     let styles = [style.pinContainer];
     if (this.props.backgroundColor) {
       styles.push({ backgroundColor: this.props.backgroundColor });

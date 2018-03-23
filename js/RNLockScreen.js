@@ -34,7 +34,14 @@ class RNLockScreen extends Component {
     defaultState: PropTypes.object,
     reenterState: PropTypes.object,
     successState: PropTypes.object,
-    errorState: PropTypes.object
+    errorState: PropTypes.object,
+
+    patternProps: PropTypes.object,
+    pinProps: PropTypes.object,
+
+    renderHeaderFragment: PropTypes.func,
+    renderSeparator: PropTypes.func,
+    renderLockFragment: PropTypes.func
   }
 
   static defaultProps = {
@@ -54,6 +61,9 @@ class RNLockScreen extends Component {
   }
 
   _renderHeaderFragment() {
+    if (this.props.renderHeaderFragment) return this.props.renderHeaderFragment()
+
+
     let dots = 0
     if (this.state.lock !== RNLockScreen.defaultProps.lock) {
       dots = this.state.lock.toString().length;      
@@ -174,6 +184,8 @@ class RNLockScreen extends Component {
   }
 
   _renderLockFragment() {
+    if (this.props.renderLockFragment) return this.props.renderLockFragment()
+
     let styles = [style.lockContainer];
     if (this.props.lockFragmentColor) {
       styles.push({ backgroundColor: this.props.lockFragmentColor });
@@ -186,6 +198,7 @@ class RNLockScreen extends Component {
             onRemove={this._onRemove}
             onDone={this._onDone}
             backgroundColor={this.props.lockFragmentColor}
+            {...this.props.pinProps}
           />
         </View>;
     } else if (this.props.type === RNLockScreen.Type.Pattern) {
@@ -197,8 +210,9 @@ class RNLockScreen extends Component {
             backgroundColor={this.props.lockFragmentColor}
             clear={this.state.state === HeaderFragment.State.Default ? false : true }
             lock={this.state.state === HeaderFragment.State.Default ? -1 : this.state.primaryLock}
+            {...this.props.patternProps}
           />
-        </View>;
+        </View>
     }
   }
 

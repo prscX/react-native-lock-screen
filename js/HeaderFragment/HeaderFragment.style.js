@@ -55,11 +55,10 @@ const style = StyleSheet.create({
     backgroundColor: "#be0000"
   },
   passcodeVisualizerContainer: {
-    width: "100%",
-    height: 50,
+    flex: 1,
+    width: '100%',
     alignItems: "center",
-    padding: 20,
-    backgroundColor: "#4a8df3"
+    justifyContent: 'center'
   }
 });
 

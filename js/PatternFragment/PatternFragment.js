@@ -79,6 +79,8 @@ class PatternFragment extends Component {
   };
 
   _renderPattern() {
+    if (this.props.renderPattern) return this.props.renderPattern()
+    
     let styles = [style.pinContainer];
     if (this.props.backgroundColor) {
       styles.push({ backgroundColor: this.props.backgroundColor });

@@ -10,9 +10,13 @@ import {
 import PropTypes from "prop-types";
 
 import Ripple from "react-native-material-ripple"
+import SvgUri from "react-native-svg-uri";
 
 import checked from "../../assets/checked.png";
 import backspace from "../../assets/backspace.png";
+
+import checkedSVG from '../../assets/checked.svg'
+import backspaceSVG from '../../assets/backspace.svg'
 
 import style from './Pin.style'
 
@@ -29,11 +33,13 @@ class Pin extends Component {
   render() {
     const { onPress, value } = this.props
 
+    let styles = StyleSheet.flatten([style.image]);
+
     let pin
     if (value === 10) {
-      pin = <Image source={checked} style={style.image} />
+      pin = <SvgUri width={styles.width} height={styles.height} source={checkedSVG} />;
     } else if (value === 11) {
-      pin = <Image source={backspace} style={style.image} />;
+      pin = <SvgUri width={styles.width} height={styles.height} source={backspaceSVG} />;
     } else {
       pin = <Text style={style.text}>{this.props.value}</Text>;
     }
