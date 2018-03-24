@@ -73,7 +73,7 @@ class PinFragment extends Component {
   }
 
   render() {
-    return <View style={style.container}>
+    return <View style={[style.container, this.props.style]}>
       {this._renderPinRows()}
     </View>
   }

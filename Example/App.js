@@ -16,6 +16,8 @@ import {
 
 import { RNLockScreen } from 'react-native-lock-screen'
 
+import wallpaper from './assets/wallpaper.jpg'
+
 type Props = {};
 export default class App extends Component<Props> {
   _onPress () {
@@ -32,6 +34,7 @@ export default class App extends Component<Props> {
             console.log("lock: " + lock);
           }}
           lock={'123'}
+          // backgroundImage={wallpaper}
         />
       </View>;
   }

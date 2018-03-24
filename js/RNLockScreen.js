@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import { StyleSheet, ViewPropTypes, View, Text, Image } from "react-native";
+import { StyleSheet, ViewPropTypes, View, Text, Image, ImageBackground } from "react-native";
 import PropTypes from "prop-types";
 
 import SvgUri from "react-native-svg-uri";
@@ -72,10 +72,17 @@ class RNLockScreen extends Component {
       dots = this.state.lock.length;
     }
 
+    let separator, containerProps = {}
+    if (this.props.backgroundImage) {
+      containerProps = style.transparentContainer;
+    } else {
+      separator = this._renderSeparator();
+    }
+
     return (
       <View style={{ flex: 1 }}>
         <HeaderFragment
-          style={[style.headerContainer]}
+          style={[style.headerContainer, containerProps]}
           dots={dots}
           state={this.state.state}
           backgroundColor={this.props.headerFragmentColor}
@@ -84,7 +91,7 @@ class RNLockScreen extends Component {
           successState={this.props.successState}
           errorState={this.props.errorState}
         />
-        {this._renderSeparator()}
+        {separator}
       </View>
     );
   }
@@ -186,6 +193,11 @@ class RNLockScreen extends Component {
       styles.push({ backgroundColor: this.props.lockFragmentColor });
     }
 
+    let containerProps = {}
+    if (this.props.backgroundImage) {
+      containerProps = style.transparentContainer;
+    }
+
     if (this.props.type === RNLockScreen.Type.Pin) {
       return (
         <View style={styles}>
@@ -194,6 +206,7 @@ class RNLockScreen extends Component {
             onRemove={this._onRemove}
             onDone={this._onDone}
             backgroundColor={this.props.lockFragmentColor}
+            style={containerProps}
             {...this.props.pinProps}
           />
         </View>
@@ -226,6 +239,7 @@ class RNLockScreen extends Component {
               this.state.state === HeaderFragment.State.Default ? false : true
             }
             lock={lock}
+            style={containerProps}
             {...this.props.patternProps}
           />
         </View>
@@ -234,12 +248,22 @@ class RNLockScreen extends Component {
   }
 
   render() {
-    return (
-      <View style={[style.container]}>
-        {this._renderHeaderFragment()}
-        {this._renderLockFragment()}
-      </View>
-    );
+    if (this.props.backgroundImage) {
+      return <ImageBackground
+          source={this.props.backgroundImage}
+          style={[style.container]}
+          width={1000}
+          height={1000}
+        >
+          {this._renderHeaderFragment()}
+          {this._renderLockFragment()}
+        </ImageBackground>
+    } else {
+      return <View style={[style.container]}>
+          {this._renderHeaderFragment()}
+          {this._renderLockFragment()}
+        </View>;
+    }
   }
 }
 

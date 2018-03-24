@@ -15,6 +15,10 @@ const style = StyleSheet.create({
   },
   lockContainer: {
     flex: 1
+  },
+  transparentContainer: {
+    backgroundColor: undefined,
+    opacity: 1
   }
 });
 

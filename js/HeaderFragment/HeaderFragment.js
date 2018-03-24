@@ -191,7 +191,7 @@ class HeaderFragment extends Component {
       styles.push({ backgroundColor: this.props.backgroundColor });
     }
 
-    return <View style={styles}>
+    return <View style={[styles, this.props.style]}>
         {this._renderState()}
         {this._renderPasscodeVisualizer()}
       </View>;
