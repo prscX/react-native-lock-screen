@@ -206,9 +206,13 @@ class RNLockScreen extends Component {
           lock = this.props.lock
         } else if (this.props.mode === RNLockScreen.Mode.Capture) {
           lock = this.state.primaryLock
-        }        
+        }
       } else {
-        lock = this.state.primaryLock
+        if (this.props.mode === RNLockScreen.Mode.Verify) {
+          lock = this.props.lock;
+        } else if (this.props.mode === RNLockScreen.Mode.Capture) {
+          lock = this.state.primaryLock;
+        }
       }
 
       return (

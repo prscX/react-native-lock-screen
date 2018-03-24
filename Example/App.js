@@ -31,7 +31,7 @@ export default class App extends Component<Props> {
         <RNLockScreen type={0} mode={0} onCapture={lock => {
             console.log("lock: " + lock);
           }}
-          lock={'012'}
+          lock={'123'}
         />
       </View>;
   }

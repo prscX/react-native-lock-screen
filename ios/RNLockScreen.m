@@ -27,7 +27,7 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
 
     NSDictionary *props = [json objectForKey: @"pattern"];
 
-    lock = [[json objectForKey: @"lock"] stringValue];
+    lock = [json objectForKey: @"lock"];
     
     NSNumber *dotCount = [json objectForKey: @"dotCount"];
     NSNumber *dotNormalSize = [json objectForKey: @"dotNormalSize"];
@@ -71,7 +71,7 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
 
 - (void)gestureLockView:(TQGestureLockView *)gestureLockView lessErrorSecurityCodeSting:(NSString *)securityCodeSting {
     
-    if (![lock isEqualToString: @"-1"]) {
+    if (![lock isEqualToString: @""]) {
         if ([securityCodeSting isEqualToString: lock]) {
             [gestureLockView setNeedsDisplayGestureLockErrorState: NO];
         } else {
