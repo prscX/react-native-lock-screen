@@ -38,7 +38,7 @@ class PatternFragment extends Component {
     accessibilityComponentType: PropTypes.string,
     nativeID: PropTypes.string,
 
-    lock: PropTypes.number,
+    lock: PropTypes.string,
     clear: PropTypes.bool
   };
 
@@ -54,18 +54,18 @@ class PatternFragment extends Component {
     wrongStateColor: "#fd1c00",
     dotAnimationDuration: 200,
     pathEndAnimationDuration: 100,
-    lock: -1,
+    lock: '',
     clear: false
   };
 
-  _onChange = event => {	
+  _onChange = event => {
     if (event.nativeEvent.eventType === "progress") {	
-      let pattern = ''
-      event.nativeEvent.pattern && (pattern = event.nativeEvent.pattern.slice(-1))
+      // let pattern = ''
+      // event.nativeEvent.pattern && (pattern = event.nativeEvent.pattern.slice(-1))
 
-      this.props.onAdd && this.props.onAdd(pattern);	
-    } else if (event.nativeEvent.eventType === "completed") {	
-      this.props.onDone && this.props.onDone(parseInt(event.nativeEvent.pattern))
+      // this.props.onAdd && this.props.onAdd(pattern);	
+    } else if (event.nativeEvent.eventType === "completed") {
+      this.props.onDone && this.props.onDone(event.nativeEvent.pattern);
     } else if (event.nativeEvent.eventType === "cleared") {	
       this.props.onCleared && this.props.onCleared();	
     }	

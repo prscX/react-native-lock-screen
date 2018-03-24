@@ -83,7 +83,9 @@ public class RNLockScreen extends ViewGroupManager<ViewGroup> {
             frameLayout.addView(patternLockView);
         }
 
-        lock = props.getInt("lock");
+        if (props.getString("lock").length() != 0) {
+            lock = Integer.parseInt(props.getString("lock"));
+        }
 
         if (props.getBoolean("clear")) {
             patternLockView.clearPattern();

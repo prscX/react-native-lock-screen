@@ -18,13 +18,17 @@ class PinFragment extends Component {
   static defaultProps = {
   }
 
+  shouldComponentUpdate () {
+    return false
+  }
+
   _onPress (value) {
     if (value === 10) {
-      this.props.onDone && this.props.onDone(value);
+      this.props.onDone && this.props.onDone();
     } else if (value === 11) {
-      this.props.onRemove && this.props.onRemove(value);
+      this.props.onRemove && this.props.onRemove();
     } else {
-      this.props.onAdd && this.props.onAdd(value);
+      this.props.onAdd && this.props.onAdd(value.toString());
     }
   }
 
