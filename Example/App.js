@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import { RNLockScreen } from 'react-native-lock-screen'
@@ -23,6 +24,10 @@ export default class App extends Component<Props> {
 
   render() {
     return <View style={styles.container}>
+        <StatusBar
+          backgroundColor={'#4a8df3'}
+          barStyle={"light-content"}
+        />
         <RNLockScreen type={0} mode={0} onCapture={lock => {
             console.log("lock: " + lock);
           }} onVerify={lock => {

@@ -8,8 +8,10 @@ const style = StyleSheet.create({
     justifyContent: "space-around"
   },
   circleGroup: {
-    paddingTop: 20,
-    alignItems: "center"
+    flex: 1.5,
+    width: '100%',
+    alignItems: "center",
+    justifyContent: 'center'
   },
   circleContainer: {
     paddingBottom: 20

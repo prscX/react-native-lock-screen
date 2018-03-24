@@ -7,11 +7,14 @@ const style = StyleSheet.create({
   headerContainer: {
     flex: 1
   },
-  speratorContainer: {
-
+  separatorContainer: {
+    height: 100,
+    width: "100%",
+    position: "absolute",
+    bottom: -30
   },
   lockContainer: {
-    flex: 1.5
+    flex: 1
   }
 });
 
