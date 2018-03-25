@@ -44,17 +44,13 @@ import RNPopoverMenu from 'react-native-popover-menu';
 | `mode`       | `number`     |   Capture - 0     | Specify mode of lock (Capture/Verify)
 | `lock`       | `string`     |        | Specify lock then the mode is Verify
 | `backgroundImage`       | `number` : `optional`     |        | Specify lock screen background image
-
 | `renderHeaderFragment`       | `func` : `optional`     |        | Specify func to customize header fragment
 | `renderSeparator`       | `func` : `optional`     |        | Specify func to customize separator
 | `renderLockFragment`       | `func` : `optional`     |        | Specify func to customize lock fragment
-
 | `patternProps`       | `object` : `optional`     |        | Specify obj to pass pattern props
 | `pinProps`       | `object` : `optional`     |        | Specify obj to pass pin props
-
 | `headerFragmentProps`       | `object` : `optional`     |        | Specify obj to pass header fragment props
 | `lockFragmentProps`       | `object` : `optional`     |        | Specify obj to pass lock fragment props
-
 | `defaultState`       | `object` : `optional`     |        | Specify obj to pass `DEFAULT` state props
 | `reenterState`       | `object` : `optional`     |        | Specify obj to pass `REENTER` state props
 | `successState`       | `object` : `optional`     |        | Specify obj to pass `SUCCESS` state props
