@@ -23,6 +23,9 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 
 `$ react-native link react-native-svg`
 
+- **iOS**
+
+`$ cd ./node_modules/react-native-lock-screen/ios/ && pod install`
 
 
 ## Usage
