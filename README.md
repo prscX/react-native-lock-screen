@@ -15,3 +15,14 @@
 
 
 
+## Credit
+- [Android: Gesture Lock](https://github.com/aritraroy/PatternLockView)
+- [iOS: Gesture Lock](https://github.com/Tuqierrenzu/TQGestureLockView)
+
+## Contribution
+Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
+
+## License
+This library is provided under the Apache 2.0 License.
+
+RNLockScreen @ Pranav Raj Singh Chauhan
