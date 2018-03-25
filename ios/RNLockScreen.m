@@ -54,6 +54,7 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
     drawManager.drawNormalColor = [RNLockScreen colorFromHexCode: normalStateColor];
     drawManager.drawSelectedColor = [RNLockScreen colorFromHexCode: correctStateColor];
     drawManager.drawErrorColor = [RNLockScreen colorFromHexCode: wrongStateColor];
+    drawManager.securityCodeLeastNumbers = [dotCount floatValue] + 1;
 
     drawManager.edgeSpacingInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
     drawManager.hollowCircleBorderWidth = 0.5;
