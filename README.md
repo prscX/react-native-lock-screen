@@ -95,15 +95,6 @@ import RNPopoverMenu from 'react-native-popover-menu';
 | `dotProps`       | `string`     |   `style: { backgroundColor: "#be0000" }`     | Specify the Dot component props
 
 
-| `title`       | `string`     |        | Specify the title of tour
-| `title`       | `string`     |        | Specify the title of tour
-| `title`       | `string`     |        | Specify the title of tour
-| `title`       | `string`     |        | Specify the title of tour
-| `title`       | `string`     |        | Specify the title of tour
-| `title`       | `string`     |        | Specify the title of tour
-| `title`       | `string`     |        | Specify the title of tour
-
-
 ## Credit
 - [Android: Gesture Lock](https://github.com/aritraroy/PatternLockView)
 - [iOS: Gesture Lock](https://github.com/Tuqierrenzu/TQGestureLockView)
