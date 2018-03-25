@@ -27,13 +27,10 @@ class RNLockScreen extends Component {
   static propTypes = {
     ...ViewPropTypes,
 
-    title: PropTypes.string,
     mode: PropTypes.number,
     type: PropTypes.number,
     lock: PropTypes.string,
     backgroundImage: PropTypes.number,
-    headerFragmentColor: PropTypes.string,
-    lockFragmentColor: PropTypes.string,
     defaultState: PropTypes.object,
     reenterState: PropTypes.object,
     successState: PropTypes.object,
@@ -53,8 +50,7 @@ class RNLockScreen extends Component {
   static defaultProps = {
     type: 0,
     mode: 0,
-    lock: "",
-    title: "Enter a passcode"
+    lock: ""
   };
 
   constructor(props) {
@@ -88,7 +84,6 @@ class RNLockScreen extends Component {
           style={[style.headerContainer, containerProps]}
           dots={dots}
           state={this.state.state}
-          backgroundColor={this.props.headerFragmentColor}
           defaultState={this.props.defaultState}
           reenterState={this.props.reenterState}
           successState={this.props.successState}
@@ -203,7 +198,6 @@ class RNLockScreen extends Component {
             onAdd={this._onAdd}
             onRemove={this._onRemove}
             onDone={this._onDone}
-            backgroundColor={this.props.lockFragmentColor}
             style={containerProps}
             {...this.props.lockFragmentProps}
           />
@@ -230,7 +224,6 @@ class RNLockScreen extends Component {
             onAdd={this._onAdd}
             onRemove={this._onRemove}
             onDone={this._onDone}
-            backgroundColor={this.props.lockFragmentColor}
             clear={
               this.state.state === HeaderFragment.State.Default ? false : true
             }
