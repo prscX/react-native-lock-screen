@@ -1,6 +1,8 @@
 
 # React Native: Lock Screen
 
+An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for Android & iOS.
+
 | **Pin** |
 | ----------------- |
 | <img src="./assets/hero1.gif" width="600" height="600" />                  |
