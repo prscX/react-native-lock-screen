@@ -29,34 +29,52 @@ class HeaderFragment extends Component {
     errorState: PropTypes.object,
 
     state: PropTypes.number,
-    dots: PropTypes.number,
-
-    backgroundColor: PropTypes.string
+    dots: PropTypes.number
   };
 
   static defaultProps = {
     defaultState: {
       title: "Enter a passcode",
       titleStyle: style.defaultTitleStyle,
-      icon: lockIcon
+      icon: lockIcon,
+      dotProps: {
+        style: {
+          backgroundColor: "#FFFFFF"
+        }
+      }
     },
 
     reenterState: {
       title: "Re-enter new passcode",
       titleStyle: style.reenterTitleStyle,
       icon: lockIcon,
+      dotProps: {
+        style: {
+          backgroundColor: "#FFFFFF"
+        }
+      }
     },
 
     successState: {
       title: "Passcode is correct",
       titleStyle: style.successTitleStyle,
-      icon: successIcon
+      icon: successIcon,
+      dotProps: {
+        style: {
+          backgroundColor: "#037d50"
+        }
+      }
     },
 
     errorState: {
       title: "Passcode do not match",
       titleStyle: style.errorTitleStyle,
-      icon: lockIcon
+      icon: lockIcon,
+      dotProps: {
+        style: {
+          backgroundColor: "#be0000"
+        }
+      }
     },
 
     state: 0,
@@ -129,49 +147,49 @@ class HeaderFragment extends Component {
               this.view = ref;
             // }}
           > */}
-            <LinePinVisualizer dots={this.props.dots} style={props.style} />
+            <LinePinVisualizer dots={this.props.dots} style={[props.style]} {...props} />
           {/* </Animatable.View>; */}
         </View>
       );
     };
 
-    let styles
+    let dotProps
     switch (this.props.state) {
       case HeaderFragment.State.Default:
-        styles = [style.defaultDotsStyle]
-        if (this.props.defaultState) {
-          styles.push({...this.props.defaultState.dotsStyle});
+        dotProps = [HeaderFragment.defaultProps.defaultState.dotProps]
+        if (this.props.defaultState && this.props.defaultState.dotProps) {
+          dotProps = Object.assign(dotProps, this.props.defaultState.dotProps)
         }
 
         return renderPasscodeVisualizer({
-          style: styles
+          dotProps: {...dotProps}
         });
       case HeaderFragment.State.Reenter:
-        styles = [style.reenterDotsStyle]
-        if (this.props.reenterState) {
-          styles.push({...this.props.reenterState.dotsStyle});
+        dotProps = [HeaderFragment.defaultProps.reenterState.dotProps]
+        if (this.props.defaultState && this.props.reenterState.dotProps) {
+          dotProps = Object.assign(dotProps, this.props.reenterState.dotProps)
         }
 
         return renderPasscodeVisualizer({
-          style: styles
+          dotProps: {...dotProps}
         });
       case HeaderFragment.State.Success:
-        styles = [style.successDotsStyle]
-        if (this.props.successState) {
-          styles.push({...this.props.successState.dotsStyle});
+        dotProps = [HeaderFragment.defaultProps.successState.dotProps]
+        if (this.props.defaultState && this.props.successState.dotProps) {
+          dotProps = Object.assign(dotProps, this.props.successState.dotProps)
         }
 
         return renderPasscodeVisualizer({
-          style: styles
+          dotProps: {...dotProps}
         });
       case HeaderFragment.State.Error:
-        styles = [style.errorDotsStyle]
-        if (this.props.errorState) {
-          styles.push({...this.props.errorState.dotsStyle});
+        dotProps = [HeaderFragment.defaultProps.errorState.dotProps]
+        if (this.props.defaultState && this.props.errorState.dotProps) {
+          dotProps = Object.assign(dotProps, this.props.errorState.dotProps)
         }
 
         return renderPasscodeVisualizer({
-          style: styles
+          dotProps: {...dotProps}
         });
     }
   }
@@ -186,12 +204,7 @@ class HeaderFragment extends Component {
   }
 
   render() {
-    let styles = [style.container];
-    if (this.props.backgroundColor) {
-      styles.push({ backgroundColor: this.props.backgroundColor });
-    }
-
-    return <View style={[styles, this.props.style]}>
+    return <View style={[style.container, this.props.style]}>
         {this._renderState()}
         {this._renderPasscodeVisualizer()}
       </View>;

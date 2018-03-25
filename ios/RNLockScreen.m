@@ -55,15 +55,18 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
     drawManager.drawSelectedColor = [RNLockScreen colorFromHexCode: correctStateColor];
     drawManager.drawErrorColor = [RNLockScreen colorFromHexCode: wrongStateColor];
     drawManager.securityCodeLeastNumbers = [dotCount floatValue] + 1;
-
-    drawManager.edgeSpacingInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
+    
+    drawManager.edgeSpacingInsets = UIEdgeInsetsMake(
+                                                     spacing, spacing, spacing, spacing);
     drawManager.hollowCircleBorderWidth = 0.5;
 
     lockView = [[TQGestureLockView alloc] initWithFrame:CGRectMake(0, 0, [width floatValue], [height floatValue]) drawManager: drawManager];
 
     lockView.delegate = self;
     lockView.reactTag = view.reactTag;
-
+    
+    lockView.backgroundColor = [UIColor clearColor];
+    
     [view addSubview: lockView];
 }
 
@@ -78,6 +81,8 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
         } else {
             [gestureLockView setNeedsDisplayGestureLockErrorState: YES];
         }
+    } else {
+        [gestureLockView setNeedsDisplayGestureLockErrorState: NO];
     }
     
     NSDictionary *event = @{

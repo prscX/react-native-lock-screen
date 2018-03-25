@@ -6,7 +6,7 @@ import style from "./Dot.style";
 
 class Dot extends Component {
   render() {
-    return <View style={[style.circle, this.props.style]} />;
+    return <View {...this.props} style={[style.container, this.props.style]} />;
   }
 }
 

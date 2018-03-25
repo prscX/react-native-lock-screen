@@ -80,11 +80,6 @@ class PatternFragment extends Component {
 
   _renderPattern() {
     if (this.props.renderPattern) return this.props.renderPattern()
-    
-    let styles = [style.pinContainer];
-    if (this.props.backgroundColor) {
-      styles.push({ backgroundColor: this.props.backgroundColor });
-    }
 
     return (
       <OnLayout style={{ flex: 1 }}>
@@ -92,8 +87,6 @@ class PatternFragment extends Component {
           if (width == 0 && height == 0) {
             return null
           } else {
-            console.log('lock: ' + this.props.lock)
-
             return <LockScreen
               style={{ height: height, width: width }}
               props={{
@@ -122,7 +115,9 @@ class PatternFragment extends Component {
   }
 
   render() {
-    return <View style={style.container}>{this._renderPattern()}</View>;
+    return <View style={[style.container, this.props.style]}>
+      {this._renderPattern()}
+    </View>;
   }
 }
 	

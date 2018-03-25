@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
-  circle: {
+  container: {
     width: 10,
     height: 10,
     borderRadius: 10 / 2,

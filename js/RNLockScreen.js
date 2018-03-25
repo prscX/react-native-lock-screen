@@ -44,7 +44,10 @@ class RNLockScreen extends Component {
 
     renderHeaderFragment: PropTypes.func,
     renderSeparator: PropTypes.func,
-    renderLockFragment: PropTypes.func
+    renderLockFragment: PropTypes.func,
+
+    headerFragmentProps: PropTypes.object,
+    lockFragmentProps: PropTypes.object
   };
 
   static defaultProps = {
@@ -90,6 +93,7 @@ class RNLockScreen extends Component {
           reenterState={this.props.reenterState}
           successState={this.props.successState}
           errorState={this.props.errorState}
+          {...this.props.headerFragmentProps}
         />
         {separator}
       </View>
@@ -101,7 +105,7 @@ class RNLockScreen extends Component {
 
     return (
       <View style={[style.separatorContainer]}>
-        <SvgUri width={1200} height={100} source={watermark} />
+        <SvgUri width={1200} height={51} source={watermark} />
       </View>
     );
   }
@@ -188,11 +192,6 @@ class RNLockScreen extends Component {
   _renderLockFragment() {
     if (this.props.renderLockFragment) return this.props.renderLockFragment();
 
-    let styles = [style.lockContainer];
-    if (this.props.lockFragmentColor) {
-      styles.push({ backgroundColor: this.props.lockFragmentColor });
-    }
-
     let containerProps = {}
     if (this.props.backgroundImage) {
       containerProps = style.transparentContainer;
@@ -200,16 +199,14 @@ class RNLockScreen extends Component {
 
     if (this.props.type === RNLockScreen.Type.Pin) {
       return (
-        <View style={styles}>
           <PinFragment
             onAdd={this._onAdd}
             onRemove={this._onRemove}
             onDone={this._onDone}
             backgroundColor={this.props.lockFragmentColor}
             style={containerProps}
-            {...this.props.pinProps}
+            {...this.props.lockFragmentProps}
           />
-        </View>
       );
     } else if (this.props.type === RNLockScreen.Type.Pattern) {
       let lock
@@ -229,7 +226,6 @@ class RNLockScreen extends Component {
       }
 
       return (
-        <View style={styles}>
           <PatternFragment
             onAdd={this._onAdd}
             onRemove={this._onRemove}
@@ -240,9 +236,8 @@ class RNLockScreen extends Component {
             }
             lock={lock}
             style={containerProps}
-            {...this.props.patternProps}
+            {...this.props.lockFragmentProps}
           />
-        </View>
       );
     }
   }

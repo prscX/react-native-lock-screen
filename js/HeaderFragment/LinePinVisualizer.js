@@ -8,7 +8,8 @@ import style from "./LinePinVisualizer.style";
 
 class LinePinVisualizer extends Component {
   static propTypes = {
-    dots: PropTypes.number
+    dots: PropTypes.number,
+    dotProps: PropTypes.object
   };
 
   static defaultProps = {
@@ -19,14 +20,16 @@ class LinePinVisualizer extends Component {
     let dots = [];
 
     for (let index = 0; index < this.props.dots; index++) {
-      dots.push(<Dot key={index} style={this.props.style} />);
+      dots.push(<Dot key={index} {...this.props.dotProps} />);
     }
 
     return dots;
   }
 
   render() {
-    return <View style={style.container}>{this._renderState()}</View>;
+    return <View {...this.props} style={[style.container, this.props.style]} >
+      {this._renderState()}
+    </View>;
   }
 }
 

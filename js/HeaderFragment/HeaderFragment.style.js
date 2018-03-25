@@ -44,18 +44,6 @@ const style = StyleSheet.create({
     fontSize: 24,
     color: "#FFFFFF"
   },
-  defaultDotsStyle: {
-    backgroundColor: "#FFFFFF"
-  },
-  reenterDotsStyle: {
-    backgroundColor: "#FFFFFF"
-  },
-  successDotsStyle: {
-    backgroundColor: "#037d50"
-  },
-  errorDotsStyle: {
-    backgroundColor: "#be0000"
-  },
   passcodeVisualizerContainer: {
     flex: 1,
     width: '100%',
