@@ -15,6 +15,26 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 | ----------------- |
 | <img src="./assets/hero3.png" width="600" height="600" />                  |
 
+## Getting started
+
+`$ npm install react-native-lock-screen --save`
+
+`$ react-native link react-native-lock-screen`
+
+`$ react-native link react-native-svg`
+
+
+
+## Usage
+```javascript
+import RNPopoverMenu from 'react-native-popover-menu';
+
+<RNLockScreen type={RNPopoverMenu.Type.Pin} mode={RNPopoverMenu.Mode.Capture} onCapture={lock => {
+  }}
+  lock={'123'}
+/>
+
+```
 
 
 ## Credit
