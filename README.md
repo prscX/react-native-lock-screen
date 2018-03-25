@@ -99,9 +99,9 @@ import RNPopoverMenu from 'react-native-popover-menu';
 
 
 ## Credit
-- [Android: Gesture Lock](https://github.com/aritraroy/PatternLockView)
-- [iOS: Gesture Lock](https://github.com/Tuqierrenzu/TQGestureLockView)
-- [Android/iOS - Design](https://github.com/hanks-zyh/PasscodeView)
+- [Android: Gesture Lock - aritraroy/PatternLockView](https://github.com/aritraroy/PatternLockView)
+- [iOS: Gesture Lock - Tuqierrenzu/TQGestureLockView](https://github.com/Tuqierrenzu/TQGestureLockView)
+- [Android/iOS: Design - hanks-zyh/PasscodeView](https://github.com/hanks-zyh/PasscodeView)
 
 ## Contribution
 Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
