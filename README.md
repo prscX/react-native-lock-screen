@@ -57,21 +57,43 @@ import RNPopoverMenu from 'react-native-popover-menu';
 | `errorState`       | `object` : `optional`     |        | Specify obj to pass `error` state props
 
 
-- **defaultState Prop**
+- **Default State Props: defaultState**
 
 | Prop              | Type       | Default | Note                                                                                                       |
 | ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
 | `title`       | `string`     |   Enter a passcode     | Specify the header fragment title
 | `titleStyle`       | `string`     |  `{ fontSize: 24, color: "#FFF" }`      | Specify title style
 | `icon`       | `string`     |   lock icon     | Specify the header circle icon
-| `dotProps`       | `string`     |   `style: { backgroundColor: "#FFFFFF" }`     | Specify the Dot component props
+| `dotProps`       | `string`     |   `style: { backgroundColor: "#FFF" }`     | Specify the Dot component props
 
 
-- **reenterState Prop**
+- **Reenter State Props: reenterState**
 
-- **successState Prop**
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `title`       | `string`     |   Enter a passcode     | Specify the header fragment title
+| `titleStyle`       | `string`     |  `{ fontSize: 24, color: "#FFF" }`      | Specify title style
+| `icon`       | `string`     |   lock icon     | Specify the header circle icon
+| `dotProps`       | `string`     |   `style: { backgroundColor: "#FFF" }`     | Specify the Dot component props
 
-- **errorState Prop**
+- **Success State Props: successState**
+
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `title`       | `string`     |   Enter a passcode     | Specify the header fragment title
+| `titleStyle`       | `string`     |  `{ fontSize: 24, color: "#FFF" }`      | Specify title style
+| `icon`       | `string`     |   lock icon     | Specify the header circle icon
+| `dotProps`       | `string`     |   `style: { backgroundColor: "#037d50" }`     | Specify the Dot component props
+
+- **Error State Props: errorState**
+
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `title`       | `string`     |   Enter a passcode     | Specify the header fragment title
+| `titleStyle`       | `string`     |  `{ fontSize: 24, color: "#FFF" }`      | Specify title style
+| `icon`       | `string`     |   lock icon     | Specify the header circle icon
+| `dotProps`       | `string`     |   `style: { backgroundColor: "#be0000" }`     | Specify the Dot component props
+
 
 | `title`       | `string`     |        | Specify the title of tour
 | `title`       | `string`     |        | Specify the title of tour
