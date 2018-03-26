@@ -30,9 +30,9 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 
 ## Usage
 ```javascript
-import RNPopoverMenu from 'react-native-popover-menu';
+import RNLockScreen from 'react-native-lock-screen';
 
-<RNLockScreen type={RNPopoverMenu.Type.Pin} mode={RNPopoverMenu.Mode.Capture} onCapture={lock => {
+<RNLockScreen type={RNLockScreen.Type.Pin} mode={RNLockScreen.Mode.Capture} onCapture={lock => {
   }}
   lock={'123'}
 />
