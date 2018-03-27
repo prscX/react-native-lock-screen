@@ -30,9 +30,9 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 
 ## Usage
 ```javascript
-import RNPopoverMenu from 'react-native-popover-menu';
+import RNLockScreen from 'react-native-lock-screen';
 
-<RNLockScreen type={RNPopoverMenu.Type.Pin} mode={RNPopoverMenu.Mode.Capture} onCapture={lock => {
+<RNLockScreen type={RNLockScreen.Type.Pin} mode={RNLockScreen.Mode.Capture} onCapture={lock => {
   }}
   lock={'123'}
 />
@@ -99,8 +99,9 @@ import RNPopoverMenu from 'react-native-popover-menu';
 
 
 ## Credit
-- [Android: Gesture Lock](https://github.com/aritraroy/PatternLockView)
-- [iOS: Gesture Lock](https://github.com/Tuqierrenzu/TQGestureLockView)
+- [Android: Gesture Lock - aritraroy/PatternLockView](https://github.com/aritraroy/PatternLockView)
+- [iOS: Gesture Lock - Tuqierrenzu/TQGestureLockView](https://github.com/Tuqierrenzu/TQGestureLockView)
+- [Android/iOS: Design - hanks-zyh/PasscodeView](https://github.com/hanks-zyh/PasscodeView)
 
 ## Contribution
 Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
