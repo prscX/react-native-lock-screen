@@ -33,6 +33,8 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 import RNLockScreen from 'react-native-lock-screen';
 
 <RNLockScreen type={RNLockScreen.Type.Pin} mode={RNLockScreen.Mode.Capture} onCapture={lock => {
+  }} onVerified={() => {
+
   }}
   lock={'123'}
 />
@@ -46,6 +48,8 @@ import RNLockScreen from 'react-native-lock-screen';
 | `type`       | `number`     |   Pin - 0     | Specify type of lock (Pin/Pattern)
 | `mode`       | `number`     |   Capture - 0     | Specify mode of lock (Capture/Verify)
 | `lock`       | `string`     |        | Specify lock then the mode is Verify
+| `onCapture`       | `func`     |        | Specify onCapture event function, this is invoked once passcode is captured
+| `onVerified`       | `func`     |        | Specify onVerified event function, this is invoked when the passcode is verified
 | `backgroundImage`       | `number` : `optional`     |        | Specify lock screen background image
 | `renderHeaderFragment`       | `func` : `optional`     |        | Specify func to customize header fragment
 | `renderSeparator`       | `func` : `optional`     |        | Specify func to customize separator
