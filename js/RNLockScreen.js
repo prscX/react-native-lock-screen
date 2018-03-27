@@ -177,6 +177,8 @@ class RNLockScreen extends Component {
       this.setState({
         state: HeaderFragment.State.Success
       });
+
+      this.props.onVerified && this.props.onVerified()
     } else {
       this.setState({
         state: HeaderFragment.State.Error

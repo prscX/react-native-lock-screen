@@ -30,8 +30,11 @@ export default class App extends Component<Props> {
           backgroundColor={'#4a8df3'}
           barStyle={"light-content"}
         />
-        <RNLockScreen type={0} mode={0} onCapture={lock => {
+        <RNLockScreen type={0} mode={1} onCapture={lock => {
             console.log("lock: " + lock);
+          }}
+          onVerified={() => {
+            console.log('lock verified')
           }}
           // headerFragmentProps={{
           //   style: {
