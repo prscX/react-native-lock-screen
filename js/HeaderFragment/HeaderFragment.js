@@ -45,7 +45,7 @@ class HeaderFragment extends Component {
     },
 
     reenterState: {
-      title: "Re-enter new passcode",
+      title: "Re-enter passcode to verify",
       titleStyle: style.reenterTitleStyle,
       icon: lockIcon,
       dotProps: {
@@ -204,7 +204,12 @@ class HeaderFragment extends Component {
   }
 
   render() {
-    return <View style={[style.container, this.props.style]}>
+    let styles = [style.container];
+    if (this.props.backgroundColor) {
+      styles.push({ backgroundColor: this.props.backgroundColor });
+    }
+
+    return <View style={styles}>
         {this._renderState()}
         {this._renderPasscodeVisualizer()}
       </View>;
