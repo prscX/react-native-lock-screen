@@ -12,11 +12,8 @@ import PropTypes from "prop-types";
 import Ripple from "react-native-material-ripple"
 import SvgUri from "react-native-svg-uri";
 
-import checked from "../../assets/checked.png";
-import backspace from "../../assets/backspace.png";
-
-import checkedSVG from '../../assets/checked.svg'
-import backspaceSVG from '../../assets/backspace.svg'
+let checkedSVG = require("../../assets/checked.svg");
+let backspaceSVG = require("../../assets/backspace.svg");
 
 import style from './Pin.style'
 

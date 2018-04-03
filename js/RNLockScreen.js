@@ -11,7 +11,7 @@ import { PatternFragment } from "./PatternFragment";
 
 import style from './RNLockScreen.style'
 
-import watermark from '../assets/watermark.svg'
+let watermark = require("../assets/watermark.svg");
 
 class RNLockScreen extends Component {
   static Mode = {
