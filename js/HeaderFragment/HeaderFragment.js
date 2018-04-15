@@ -205,8 +205,8 @@ class HeaderFragment extends Component {
 
   render() {
     let styles = [style.container];
-    if (this.props.backgroundColor) {
-      styles.push({ backgroundColor: this.props.backgroundColor });
+    if (this.props.style) {
+      styles.push(this.props.style);
     }
 
     return <View style={styles}>
