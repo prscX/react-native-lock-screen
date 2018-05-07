@@ -13,7 +13,7 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 
 | **With Background** |
 | ----------------- |
-| <img src="./assets/hero3.png" width="300" height="600" />                  |
+| <img src="./assets/hero3.png" width="600" height="600" />                  |
 
 ## Getting started
 
