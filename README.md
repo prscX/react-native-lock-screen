@@ -5,15 +5,15 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 
 | **Pin** |
 | ----------------- |
-| <img src="./assets/hero1.gif" width="600" height="600" />                  |
+| <img src="./assets/hero1.gif" />                  |
 
 | **Pattern** |
 | ----------------- |
-| <img src="./assets/hero2.gif" width="600" height="600" />                  |
+| <img src="./assets/hero2.gif" />                  |
 
 | **With Background** |
 | ----------------- |
-| <img src="./assets/hero3.png" width="600" height="600" />                  |
+| <img src="./assets/hero3.png" />                  |
 
 ## Getting started
 
