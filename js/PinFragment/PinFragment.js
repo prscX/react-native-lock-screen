@@ -8,21 +8,22 @@ import style from './PinFragment.style'
 
 class PinFragment extends Component {
   static propTypes = {
+    confirmPin: PropTypes.object,
+    deletePin: PropTypes.object,
     onAdd: PropTypes.func,
     onRemove: PropTypes.func,
     onDone: PropTypes.func,
 
     backgroundColor: PropTypes.string
+  };
+
+  static defaultProps = {};
+
+  shouldComponentUpdate() {
+    return false;
   }
 
-  static defaultProps = {
-  }
-
-  shouldComponentUpdate () {
-    return false
-  }
-
-  _onPress (value) {
+  _onPress(value) {
     if (value === 10) {
       this.props.onDone && this.props.onDone();
     } else if (value === 11) {
@@ -32,23 +33,33 @@ class PinFragment extends Component {
     }
   }
 
-  _renderPin (value) {
-    if (this.props.renderPin) return this.props.renderPin()
+  _renderPin(value) {
+    let { confirmPin, deletePin } = this.props;
 
-    return <Pin value={value} onPress={() => {
-      this._onPress(value)
-    }}></Pin>
+    if (this.props.renderPin) return this.props.renderPin();
+
+    return (
+      <Pin
+        value={value}
+        confirmPin={confirmPin}
+        deletePin={deletePin}
+        onPress={() => {
+          this._onPress(value);
+        }}
+      />
+    );
   }
 
-  _renderPinRows () {
-    if (this.props.renderPinRows) return this.props.renderPinRows() 
+  _renderPinRows() {
+    if (this.props.renderPinRows) return this.props.renderPinRows();
 
     let styles = [style.pinContainer];
     if (this.props.backgroundColor) {
       styles.push({ backgroundColor: this.props.backgroundColor });
     }
 
-    return <View style={styles}>
+    return (
+      <View style={styles}>
         <View style={style.pinRowContainer}>
           {this._renderPin(1)}
           {this._renderPin(2)}
@@ -69,13 +80,16 @@ class PinFragment extends Component {
           {this._renderPin(0)}
           {this._renderPin(11)}
         </View>
-      </View>;
+      </View>
+    );
   }
 
   render() {
-    return <View style={[style.container, this.props.style]}>
-      {this._renderPinRows()}
-    </View>
+    return (
+      <View style={[style.container, this.props.style]}>
+        {this._renderPinRows()}
+      </View>
+    );
   }
 }
 

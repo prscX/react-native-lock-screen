@@ -44,7 +44,10 @@ class RNLockScreen extends Component {
     renderLockFragment: PropTypes.func,
 
     headerFragmentProps: PropTypes.object,
-    lockFragmentProps: PropTypes.object
+    lockFragmentProps: PropTypes.object,
+
+    confirmPin: PropTypes.object,
+    deletePin: PropTypes.object
   };
 
   static defaultProps = {
@@ -197,6 +200,8 @@ class RNLockScreen extends Component {
     if (this.props.type === RNLockScreen.Type.Pin) {
       return (
           <PinFragment
+            confirmPin={this.props.confirmPin}
+            deletePin={this.props.deletePin}
             onAdd={this._onAdd}
             onRemove={this._onRemove}
             onDone={this._onDone}

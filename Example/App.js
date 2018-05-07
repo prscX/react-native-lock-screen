@@ -48,6 +48,18 @@ export default class App extends Component<Props> {
           // }}
           lock={'123'}
           // backgroundImage={wallpaper}
+          // confirmPin={{
+          //   title: 'Confirm',
+          //   style: {
+          //     color: '#006400'
+          //   }
+          // }}
+          // deletePin={{
+          //   title: 'Delete',
+          //   style: {
+          //     color: '#8b0000'
+          //   }
+          // }}
         />
       </View>;
   }

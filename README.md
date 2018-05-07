@@ -62,6 +62,8 @@ import RNLockScreen from 'react-native-lock-screen';
 | `reenterState`       | `object` : `optional`     |        | Specify obj to pass `REENTER` state props
 | `successState`       | `object` : `optional`     |        | Specify obj to pass `SUCCESS` state props
 | `errorState`       | `object` : `optional`     |        | Specify obj to pass `error` state props
+| `confirmPin`       | `object` : `optional`     |        | Specify obj to pass `confirm pin` state props
+| `deletePin`       | `object` : `optional`     |        | Specify obj to pass `delete pin` state props
 
 
 - **Default State Props: defaultState**
@@ -100,6 +102,16 @@ import RNLockScreen from 'react-native-lock-screen';
 | `titleStyle`       | `string`     |  `{ fontSize: 24, color: "#FFF" }`      | Specify title style
 | `icon`       | `string`     |   lock icon     | Specify the header circle icon
 | `dotProps`       | `string`     |   `style: { backgroundColor: "#be0000" }`     | Specify the Dot component props
+
+
+- **Confirm/Delete Pin Props**
+
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `title`       | `string`     |     | Specify text of confirm pin
+| `icon`       | `string`     |   Confirm Icon/Delete Icon    | Specify icon of confirm pin
+| `style`       | `string`     |      | Specify style of title/icon
+
 
 
 ## Credit

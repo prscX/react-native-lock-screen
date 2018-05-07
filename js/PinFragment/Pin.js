@@ -20,33 +20,48 @@ import style from './Pin.style'
 class Pin extends Component {
   static propTypes = {
     value: PropTypes.number,
+    confirmPin: PropTypes.object,
+    deletePin: PropTypes.object,
     onPress: PropTypes.func
   };
 
   static defaultProps = {
-    value: -1
-  }
+    value: -1,
+    confirmPin: {
+      icon: checkedSVG
+    },
+    deletePin: {
+      icon: backspaceSVG
+    }
+  };
 
   render() {
-    const { onPress, value } = this.props
+    const { value, confirmPin, deletePin, onPress } = this.props;
 
     let styles = StyleSheet.flatten([style.image]);
 
-    let pin
+    let pin;
     if (value === 10) {
-      pin = <SvgUri width={styles.width} height={styles.height} source={checkedSVG} />;
+        if (confirmPin.title) {
+          pin = <Text style={[style.text, confirmPin.style]}>{confirmPin.title}</Text>;
+        } else if (confirmPin.icon) {
+          pin = <SvgUri width={styles.width} height={styles.height} source={confirmPin.icon} />;
+        }
     } else if (value === 11) {
-      pin = <SvgUri width={styles.width} height={styles.height} source={backspaceSVG} />;
+        if (deletePin.title) {
+          pin = <Text style={[style.text, deletePin.style]}>{deletePin.title}</Text>;
+        } else if (deletePin.icon) {
+          pin = <SvgUri width={styles.width} height={styles.height} source={deletePin.icon} />;
+        }
     } else {
       pin = <Text style={style.text}>{this.props.value}</Text>;
     }
 
-    return <Ripple onPress={onPress}>
-        <View style={style.container}>
-          {pin}
-        </View>
-      </Ripple>;
-      
+    return (
+      <Ripple onPress={onPress}>
+        <View style={style.container}>{pin}</View>
+      </Ripple>
+    );
   }
 }
 
