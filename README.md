@@ -104,6 +104,19 @@ import RNLockScreen from 'react-native-lock-screen';
 | `dotProps`       | `string`     |   `style: { backgroundColor: "#be0000" }`     | Specify the Dot component props
 
 
+- **Pin Props**
+
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `confirmPin`       | `string`     |     | Specify text/icon/style of confirm pin
+| `deletePin`       | `string`     |      | Specify text/icon/style of delete pin
+| `rippleProps`       | `string`     |      | Specify props of ripple. Please refer [react-native-material-ripple](https://github.com/n4kz/react-native-material-ripple)
+| `containerStyle`       | `string`     |      | Specify style of root container
+| `textStyle`       | `string`     |      | Specify style of text displayed
+| `suggestionStyle`       | `string`     |      | Specify style of suggestion displayed
+| `alphabetPinSuggestion`       | `bool`     |  `true`    | Enable/Disable alphabet suggestion
+
+
 - **Confirm/Delete Pin Props**
 
 | Prop              | Type       | Default | Note                                                                                                       |
