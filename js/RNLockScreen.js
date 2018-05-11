@@ -44,10 +44,7 @@ class RNLockScreen extends Component {
     renderLockFragment: PropTypes.func,
 
     headerFragmentProps: PropTypes.object,
-    lockFragmentProps: PropTypes.object,
-
-    confirmPin: PropTypes.object,
-    deletePin: PropTypes.object
+    lockFragmentProps: PropTypes.object
   };
 
   static defaultProps = {
@@ -66,16 +63,28 @@ class RNLockScreen extends Component {
   }
 
   _renderHeaderFragment() {
-    if (this.props.renderHeaderFragment)
-      return this.props.renderHeaderFragment();
+    let {
+      defaultState,
+      reenterState,
+      successState,
+      errorState,
+      headerFragmentProps,
+      backgroundImage,
+      renderHeaderFragment
+    } = this.props;
+
+    if (renderHeaderFragment)
+      return renderHeaderFragment();
 
     let dots = 0;
     if (this.state.lock !== RNLockScreen.defaultProps.lock) {
       dots = this.state.lock.length;
     }
 
-    let separator, containerProps = {}
-    if (this.props.backgroundImage) {
+    let separator,
+      containerProps;
+
+    if (backgroundImage) {
       containerProps = style.transparentContainer;
     } else {
       separator = this._renderSeparator();
@@ -87,11 +96,11 @@ class RNLockScreen extends Component {
           style={[style.headerContainer, containerProps]}
           dots={dots}
           state={this.state.state}
-          defaultState={this.props.defaultState}
-          reenterState={this.props.reenterState}
-          successState={this.props.successState}
-          errorState={this.props.errorState}
-          {...this.props.headerFragmentProps}
+          defaultState={defaultState}
+          reenterState={reenterState}
+          successState={successState}
+          errorState={errorState}
+          {...headerFragmentProps}
         />
         {separator}
       </View>
@@ -99,7 +108,9 @@ class RNLockScreen extends Component {
   }
 
   _renderSeparator() {
-    if (this.props.renderSeparator) return this.props.renderSeparator();
+    let { renderSeparator } = this.props;
+
+    if (renderSeparator) return renderSeparator();
 
     return (
       <View style={[style.separatorContainer]}>
@@ -123,19 +134,23 @@ class RNLockScreen extends Component {
   };
 
   _onDone = pin => {
+    let { mode } = this.props 
+
     let lock = this.state.lock;
     if (pin !== undefined && pin !== RNLockScreen.defaultProps.lock) {
       lock = pin;
     }
 
-    if (this.props.mode === RNLockScreen.Mode.Capture) {
+    if (mode === RNLockScreen.Mode.Capture) {
       this._onCapture(lock);
-    } else if (this.props.mode === RNLockScreen.Mode.Verify) {
+    } else if (mode === RNLockScreen.Mode.Verify) {
       this._onVerify(lock);
     }
   };
 
   _onCapture = lock => {
+    let { onCapture, type } = this.props
+
     if (this.state.state === HeaderFragment.State.Default) {
       this.setState({
         primaryLock: lock,
@@ -152,14 +167,14 @@ class RNLockScreen extends Component {
           state: HeaderFragment.State.Success
         });
 
-        this.props.onCapture && this.props.onCapture(lock);
+        onCapture && onCapture(lock);
       } else {
-        if (this.props.type === RNLockScreen.Type.Pattern) {
+        if (type === RNLockScreen.Type.Pattern) {
           this.setState({
             state: HeaderFragment.State.Error,
             lock: RNLockScreen.defaultProps.lock
           });
-        } else if (this.props.type === RNLockScreen.Type.Pin) {
+        } else if (type === RNLockScreen.Type.Pin) {
           this.setState({
             state: HeaderFragment.State.Error
           });
@@ -168,12 +183,14 @@ class RNLockScreen extends Component {
     }
   };
 
-  _onVerify = lock => {
-    let verified
-    if (this.props.lock === lock) {
-      verified = true
+  _onVerify = capturedLock => {
+    let { lock, onVerified } = this.props
+
+    let verified;
+    if (lock === capturedLock) {
+      verified = true;
     } else {
-      verified = false
+      verified = false;
     }
 
     if (verified) {
@@ -181,7 +198,7 @@ class RNLockScreen extends Component {
         state: HeaderFragment.State.Success
       });
 
-      this.props.onVerified && this.props.onVerified()
+      onVerified && onVerified();
     } else {
       this.setState({
         state: HeaderFragment.State.Error
@@ -190,62 +207,66 @@ class RNLockScreen extends Component {
   };
 
   _renderLockFragment() {
-    if (this.props.renderLockFragment) return this.props.renderLockFragment();
+    let { pinProps, lockFragmentProps, mode, renderLockFragment, backgroundImage, type, lock } = this.props;
 
-    let containerProps = {}
-    if (this.props.backgroundImage) {
+    if (renderLockFragment) return renderLockFragment();
+
+    let containerProps = {};
+    if (backgroundImage) {
       containerProps = style.transparentContainer;
     }
 
-    if (this.props.type === RNLockScreen.Type.Pin) {
+    if (type === RNLockScreen.Type.Pin) {
       return (
-          <PinFragment
-            confirmPin={this.props.confirmPin}
-            deletePin={this.props.deletePin}
-            onAdd={this._onAdd}
-            onRemove={this._onRemove}
-            onDone={this._onDone}
-            style={containerProps}
-            {...this.props.lockFragmentProps}
-          />
+        <PinFragment
+          onAdd={this._onAdd}
+          onRemove={this._onRemove}
+          onDone={this._onDone}
+          style={containerProps}
+          {...lockFragmentProps}
+          {...pinProps}
+        />
       );
-    } else if (this.props.type === RNLockScreen.Type.Pattern) {
-      let lock
+    } else if (type === RNLockScreen.Type.Pattern) {
+      let lock;
 
       if (this.state.state === HeaderFragment.State.Default) {
-        if (this.props.mode === RNLockScreen.Mode.Verify) {
-          lock = this.props.lock
-        } else if (this.props.mode === RNLockScreen.Mode.Capture) {
-          lock = this.state.primaryLock
+        if (mode === RNLockScreen.Mode.Verify) {
+          lock = lock;
+        } else if (mode === RNLockScreen.Mode.Capture) {
+          lock = this.state.primaryLock;
         }
       } else {
-        if (this.props.mode === RNLockScreen.Mode.Verify) {
-          lock = this.props.lock;
-        } else if (this.props.mode === RNLockScreen.Mode.Capture) {
+        if (mode === RNLockScreen.Mode.Verify) {
+          lock = lock;
+        } else if (mode === RNLockScreen.Mode.Capture) {
           lock = this.state.primaryLock;
         }
       }
 
       return (
-          <PatternFragment
-            onAdd={this._onAdd}
-            onRemove={this._onRemove}
-            onDone={this._onDone}
-            clear={
-              this.state.state === HeaderFragment.State.Default ? false : true
-            }
-            lock={lock}
-            style={containerProps}
-            {...this.props.lockFragmentProps}
-          />
+        <PatternFragment
+          onAdd={this._onAdd}
+          onRemove={this._onRemove}
+          onDone={this._onDone}
+          clear={
+            this.state.state === HeaderFragment.State.Default ? false : true
+          }
+          lock={lock}
+          style={containerProps}
+          {...lockFragmentProps}
+        />
       );
     }
   }
 
   render() {
-    if (this.props.backgroundImage) {
-      return <ImageBackground
-          source={this.props.backgroundImage}
+    let { backgroundImage } = this.props
+
+    if (backgroundImage) {
+      return (
+        <ImageBackground
+          source={backgroundImage}
           style={[style.container]}
           width={1000}
           height={1000}
@@ -253,11 +274,14 @@ class RNLockScreen extends Component {
           {this._renderHeaderFragment()}
           {this._renderLockFragment()}
         </ImageBackground>
+      );
     } else {
-      return <View style={[style.container]}>
+      return (
+        <View style={[style.container]}>
           {this._renderHeaderFragment()}
           {this._renderLockFragment()}
-        </View>;
+        </View>
+      );
     }
   }
 }

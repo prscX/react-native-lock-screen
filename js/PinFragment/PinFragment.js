@@ -10,6 +10,10 @@ class PinFragment extends Component {
   static propTypes = {
     confirmPin: PropTypes.object,
     deletePin: PropTypes.object,
+    rippleProps: PropTypes.object,
+    containerStyle: PropTypes.object,
+    textStyle: PropTypes.object,
+    suggestionStyle: PropTypes.object,
     onAdd: PropTypes.func,
     onRemove: PropTypes.func,
     onDone: PropTypes.func,
@@ -34,7 +38,7 @@ class PinFragment extends Component {
   }
 
   _renderPin(value) {
-    let { confirmPin, deletePin } = this.props;
+    let { confirmPin, deletePin, rippleProps, containerStyle, textStyle, alphabetPinSuggestion, suggestionStyle } = this.props;
 
     if (this.props.renderPin) return this.props.renderPin();
 
@@ -43,6 +47,11 @@ class PinFragment extends Component {
         value={value}
         confirmPin={confirmPin}
         deletePin={deletePin}
+        rippleProps={rippleProps}
+        containerStyle={containerStyle}
+        textStyle={textStyle}
+        suggestionStyle={suggestionStyle}
+        alphabetPinSuggestion={alphabetPinSuggestion}
         onPress={() => {
           this._onPress(value);
         }}

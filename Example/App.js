@@ -37,28 +37,41 @@ export default class App extends Component<Props> {
             console.log('lock verified')
           }}
           // headerFragmentProps={{
-          //   style: {
-          //     backgroundColor: '#000'
-          //   }
+          //   backgroundColor: '#2777ae'
           // }}
+          lock={'123'}
+          // backgroundImage={wallpaper}
           // lockFragmentProps={{
           //   style: {
           //     backgroundColor: '#000'
           //   }
           // }}
-          lock={'123'}
-          // backgroundImage={wallpaper}
-          // confirmPin={{
-          //   title: 'Confirm',
-          //   style: {
-          //     color: '#006400'
-          //   }
-          // }}
-          // deletePin={{
-          //   title: 'Delete',
-          //   style: {
-          //     color: '#8b0000'
-          //   }
+          // pinProps={{
+          //   confirmPin:{
+          //     title: 'Confirm',
+          //     style: {
+          //       color: '#006400'
+          //     }
+          //   },
+          //   // deletePin:{
+          //   //   title: 'Delete',
+          //   //   style: {
+          //   //     color: '#006400'
+          //   //   }
+          //   // },
+          //   rippleProps:{
+          //     rippleColor: '#8b0000'
+          //   },
+          //   containerStyle:{
+          //     backgroundColor: 'transparent'
+          //   },
+          //   textStyle:{
+          //     color: '#000'
+          //   },
+          //   suggestionStyle: {
+          //     color: '#989889'
+          //   },
+          //   alphabetPinSuggestion: true
           // }}
         />
       </View>;

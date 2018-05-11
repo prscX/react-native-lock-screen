@@ -204,15 +204,18 @@ class HeaderFragment extends Component {
   }
 
   render() {
-    let styles = [style.container];
-    if (this.props.backgroundColor) {
-      styles.push({ backgroundColor: this.props.backgroundColor });
+    let { backgroundColor } = this.props
+    let styleProps = this.props.style
+
+    let styles = [style.container, styleProps];
+    if (backgroundColor) {
+      styles.push({ backgroundColor: backgroundColor });
     }
 
     return <View style={styles}>
-        {this._renderState()}
-        {this._renderPasscodeVisualizer()}
-      </View>;
+      {this._renderState()}
+      {this._renderPasscodeVisualizer()}
+    </View>;
   }
 }
 

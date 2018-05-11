@@ -17,11 +17,29 @@ let backspaceSVG = require("../../assets/backspace.svg");
 
 import style from './Pin.style'
 
+let SUGGESTIONS = {
+  1: '',
+  2: 'ABC',
+  3: 'DEF',
+  4: 'GHI',
+  5: 'JKL',
+  6: 'MNO',
+  7: 'PQRS',
+  8: 'TUV',
+  9: 'WXYZ',
+  0: '+'
+}
+
 class Pin extends Component {
   static propTypes = {
     value: PropTypes.number,
     confirmPin: PropTypes.object,
     deletePin: PropTypes.object,
+    rippleProps: PropTypes.object,
+    containerStyle: PropTypes.object,
+    textStyle: PropTypes.object,
+    suggestionStyle: PropTypes.object,
+    alphabetPinSuggestion: PropTypes.bool,
     onPress: PropTypes.func
   };
 
@@ -32,34 +50,81 @@ class Pin extends Component {
     },
     deletePin: {
       icon: backspaceSVG
-    }
+    },
+    alphabetPinSuggestion: true
   };
 
   render() {
-    const { value, confirmPin, deletePin, onPress } = this.props;
+    const {
+      value,
+      confirmPin,
+      deletePin,
+      rippleProps,
+      containerStyle,
+      textStyle,
+      suggestionStyle,
+      alphabetPinSuggestion,
+      onPress
+    } = this.props;
 
     let styles = StyleSheet.flatten([style.image]);
 
     let pin;
     if (value === 10) {
-        if (confirmPin.title) {
-          pin = <Text style={[style.text, confirmPin.style]}>{confirmPin.title}</Text>;
-        } else if (confirmPin.icon) {
-          pin = <SvgUri width={styles.width} height={styles.height} source={confirmPin.icon} />;
-        }
+      if (confirmPin.title) {
+        pin = (
+          <Text style={[style.pin, confirmPin.style]}>{confirmPin.title}</Text>
+        );
+      } else if (confirmPin.icon) {
+        pin = (
+          <SvgUri
+            width={styles.width}
+            height={styles.height}
+            source={confirmPin.icon}
+          />
+        );
+      }
     } else if (value === 11) {
-        if (deletePin.title) {
-          pin = <Text style={[style.text, deletePin.style]}>{deletePin.title}</Text>;
-        } else if (deletePin.icon) {
-          pin = <SvgUri width={styles.width} height={styles.height} source={deletePin.icon} />;
-        }
+      if (deletePin.title) {
+        pin = (
+          <Text style={[style.pin, deletePin.style]}>{deletePin.title}</Text>
+        );
+      } else if (deletePin.icon) {
+        pin = (
+          <SvgUri
+            width={styles.width}
+            height={styles.height}
+            source={deletePin.icon}
+          />
+        );
+      }
     } else {
-      pin = <Text style={style.text}>{this.props.value}</Text>;
+      if (!alphabetPinSuggestion) {
+        pin = <Text style={[style.pin, textStyle]}>{this.props.value}</Text>;
+      } else {
+          pin = <View style={{
+            flex: 1,
+            alignItems: 'center'
+          }}>
+            <Text style={[style.pin, textStyle]}>
+              {this.props.value}
+            </Text>;
+            <Text style={[style.suggestion, suggestionStyle]}>
+              {SUGGESTIONS[this.props.value]}
+            </Text>;
+          </View>;
+      }
     }
 
+    let containerStyl = StyleSheet.flatten(style.container);
+
     return (
-      <Ripple onPress={onPress}>
-        <View style={style.container}>{pin}</View>
+      <Ripple
+        onPress={onPress}
+        rippleContainerBorderRadius={containerStyl.borderRadius}
+        {...rippleProps}
+      >
+        <View style={[style.container, containerStyle]}>{pin}</View>
       </Ripple>
     );
   }

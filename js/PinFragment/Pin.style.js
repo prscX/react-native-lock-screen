@@ -9,10 +9,16 @@ const style = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  text: {
+  pin: {
     fontSize: 26,
     fontWeight: "bold",
     color: "#7c7c7c"
+  },
+  suggestion: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#adadad",
+    marginTop: 10
   },
   image: {
     height: 32,
