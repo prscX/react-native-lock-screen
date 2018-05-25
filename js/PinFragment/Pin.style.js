@@ -10,12 +10,12 @@ const style = StyleSheet.create({
     alignItems: "center"
   },
   pin: {
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: "bold",
     color: "#7c7c7c"
   },
   suggestion: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
     color: "#adadad",
     marginTop: 10

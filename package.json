@@ -1,6 +1,6 @@
 {
     "name": "react-native-lock-screen",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "React Native: Native Lock Screen",
     "main": "./js/index.js",
     "scripts": {
