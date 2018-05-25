@@ -114,7 +114,7 @@ class RNLockScreen extends Component {
 
     return (
       <View style={[style.separatorContainer]}>
-        <SvgUri width={1200} height={51} source={watermark} />
+        <SvgUri width={1380} height={35} source={watermark} />
       </View>
     );
   }

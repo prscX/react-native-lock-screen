@@ -8,7 +8,7 @@ const style = StyleSheet.create({
     flex: 1
   },
   separatorContainer: {
-    height: 51,
+    height: 35,
     width: "100%",
     position: "absolute",
     bottom: -1
