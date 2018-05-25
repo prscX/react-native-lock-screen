@@ -23,6 +23,34 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 
 `$ react-native link react-native-svg`
 
+
+- **Android**
+  - Please add below snippet into your app `build.gradle`
+
+```
+
+buildscript {
+    repositories {
+      jcenter()
+      google()
+		...
+    }
+	...
+}
+
+
+allprojects {
+    repositories {
+      maven { url 'https://jitpack.io' }
+		  google()
+		...
+    }
+}
+```
+
+> **Note:** This library is support on Android 27 > above
+
+
 - **iOS**
 
 `$ cd ./node_modules/react-native-lock-screen/ios/ && pod install`

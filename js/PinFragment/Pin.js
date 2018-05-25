@@ -106,12 +106,16 @@ class Pin extends Component {
             flex: 1,
             alignItems: 'center'
           }}>
-            <Text style={[style.pin, textStyle]}>
-              {this.props.value}
-            </Text>;
-            <Text style={[style.suggestion, suggestionStyle]}>
-              {SUGGESTIONS[this.props.value]}
-            </Text>;
+            <View>
+              <Text style={[style.pin, textStyle]}>
+                {this.props.value}
+              </Text>
+            </View>
+            <View>
+              <Text style={[style.suggestion, suggestionStyle]}>
+                {SUGGESTIONS[this.props.value]}
+              </Text>
+            </View>
           </View>;
       }
     }
