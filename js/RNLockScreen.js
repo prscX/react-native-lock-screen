@@ -30,7 +30,10 @@ class RNLockScreen extends Component {
     mode: PropTypes.number,
     type: PropTypes.number,
     lock: PropTypes.string,
+    lockLimit: PropTypes.string,
+
     backgroundImage: PropTypes.number,
+
     defaultState: PropTypes.object,
     reenterState: PropTypes.object,
     successState: PropTypes.object,
@@ -50,7 +53,8 @@ class RNLockScreen extends Component {
   static defaultProps = {
     type: 0,
     mode: 0,
-    lock: ""
+    lock: "",
+    lockLimit: 4
   };
 
   constructor(props) {
@@ -70,7 +74,8 @@ class RNLockScreen extends Component {
       errorState,
       headerFragmentProps,
       backgroundImage,
-      renderHeaderFragment
+      renderHeaderFragment,
+      lockLimit
     } = this.props;
 
     if (renderHeaderFragment)
@@ -95,6 +100,7 @@ class RNLockScreen extends Component {
         <HeaderFragment
           style={[style.headerContainer, containerProps]}
           dots={dots}
+          dotsLimit={lockLimit}
           state={this.state.state}
           defaultState={defaultState}
           reenterState={reenterState}
@@ -120,7 +126,11 @@ class RNLockScreen extends Component {
   }
 
   _onAdd = pin => {
-    let lock = this.state.lock;
+    let { lockLimit } = this.props
+    let { lock, state } = this.state
+
+    if (lock && lock.length >= lockLimit) return
+
     this.setState({
       lock: lock.concat(pin)
     });
@@ -129,7 +139,9 @@ class RNLockScreen extends Component {
   _onRemove = () => {
     let lock = this.state.lock;
     if (lock.length > 0) {
-      this.setState({ lock: lock.substr(0, lock.length - 1) });
+      this.setState({
+        lock: lock.substr(0, lock.length - 1)
+      });
     }
   };
 

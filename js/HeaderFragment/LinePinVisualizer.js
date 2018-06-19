@@ -9,21 +9,33 @@ import style from "./LinePinVisualizer.style";
 class LinePinVisualizer extends Component {
   static propTypes = {
     dots: PropTypes.number,
+    dotsLimit: PropTypes.number,
     dotProps: PropTypes.object
   };
 
   static defaultProps = {
-    dots: 0
+    dots: 0,
+    dotsLimit: 4
   };
 
   _renderState() {
-    let dots = [];
+    let {
+      dots,
+      dotsLimit,
+      dotProps
+    } = this.props
 
-    for (let index = 0; index < this.props.dots; index++) {
-      dots.push(<Dot key={index} {...this.props.dotProps} />);
+    let dotsComponent = [];
+
+    for (let index = 0; index < dotsLimit; index++) {
+      if (index < dots) {
+        dotsComponent.push(<Dot key={index} {...dotProps} />);
+      } else {
+        dotsComponent.push(<Dot key={index} />);
+      }
     }
 
-    return dots;
+    return dotsComponent;
   }
 
   render() {

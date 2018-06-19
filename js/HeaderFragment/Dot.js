@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { StyleSheet, ViewPropTypes, View } from "react-native";
 import PropTypes from "prop-types";
 
-import style from "./Dot.style";
+import styles from "./Dot.style";
 
 class Dot extends Component {
   render() {
-    return <View {...this.props} style={[style.container, this.props.style]} />;
+    let { style } = this.props
+
+    return <View {...this.props} style={[styles.container, style]} />;
   }
 }
 

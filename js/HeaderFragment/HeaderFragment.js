@@ -29,7 +29,8 @@ class HeaderFragment extends Component {
     errorState: PropTypes.object,
 
     state: PropTypes.number,
-    dots: PropTypes.number
+    dots: PropTypes.number,
+    dotsLimit: PropTypes.number
   };
 
   static defaultProps = {
@@ -131,64 +132,74 @@ class HeaderFragment extends Component {
   }
 
   _renderPasscodeVisualizer() {
-    if (this.props.renderPasscodeVisualizer)
-      return this.props.renderPasscodeVisualizer();
+    let {
+      dots,
+      dotsLimit,
+      backgroundColor,
+      defaultState,
+      reenterState,
+      successState,
+      errorState,
+      renderPasscodeVisualizer,
+      state
+    } = this.props;
 
-    let renderPasscodeVisualizer = props => {
+    if (renderPasscodeVisualizer)
+      return renderPasscodeVisualizer();
+
+    let renderVisualizer = props => {
       let styles = [style.passcodeVisualizerContainer];
-      if (this.props.backgroundColor) {
-        styles.push({ backgroundColor: this.props.backgroundColor });
+      if (backgroundColor) {
+        styles.push({ backgroundColor: backgroundColor });
       }
 
-      return (
-        <View style={styles}>
+      return <View style={styles}>
           {/* <Animatable.View
             ref={ref => {
               this.view = ref;
             // }}
           > */}
-            <LinePinVisualizer dots={this.props.dots} style={[props.style]} {...props} />
+          <LinePinVisualizer dotsLimit={dotsLimit} dots={dots} style={[props.style]} {...props} />
           {/* </Animatable.View>; */}
-        </View>
-      );
+        </View>;
     };
 
     let dotProps
-    switch (this.props.state) {
+    switch (state) {
       case HeaderFragment.State.Default:
         dotProps = [HeaderFragment.defaultProps.defaultState.dotProps]
-        if (this.props.defaultState && this.props.defaultState.dotProps) {
-          dotProps = Object.assign(dotProps, this.props.defaultState.dotProps)
+        if (defaultState && defaultState.dotProps) {
+          dotProps = Object.assign(dotProps, defaultState.dotProps)
         }
 
-        return renderPasscodeVisualizer({
+        return renderVisualizer({
           dotProps: {...dotProps}
         });
       case HeaderFragment.State.Reenter:
         dotProps = [HeaderFragment.defaultProps.reenterState.dotProps]
-        if (this.props.defaultState && this.props.reenterState.dotProps) {
-          dotProps = Object.assign(dotProps, this.props.reenterState.dotProps)
+        if (defaultState && reenterState.dotProps) {
+          dotProps = Object.assign(dotProps, reenterState.dotProps)
         }
 
-        return renderPasscodeVisualizer({
+        return renderVisualizer({
           dotProps: {...dotProps}
         });
       case HeaderFragment.State.Success:
         dotProps = [HeaderFragment.defaultProps.successState.dotProps]
-        if (this.props.defaultState && this.props.successState.dotProps) {
-          dotProps = Object.assign(dotProps, this.props.successState.dotProps)
+        if (defaultState && successState.dotProps) {
+          dotProps = Object.assign(dotProps, successState.dotProps)
         }
 
-        return renderPasscodeVisualizer({
+        return renderVisualizer({
           dotProps: {...dotProps}
         });
       case HeaderFragment.State.Error:
         dotProps = [HeaderFragment.defaultProps.errorState.dotProps]
-        if (this.props.defaultState && this.props.errorState.dotProps) {
-          dotProps = Object.assign(dotProps, this.props.errorState.dotProps)
+        if (defaultState && errorState.dotProps) {
+          dotProps = Object.assign(dotProps, errorState.dotProps)
         }
 
-        return renderPasscodeVisualizer({
+        return renderVisualizer({
           dotProps: {...dotProps}
         });
     }
