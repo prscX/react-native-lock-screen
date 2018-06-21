@@ -170,7 +170,7 @@ class HeaderFragment extends Component {
     let dotProps
     switch (state) {
       case HeaderFragment.State.Default:
-        dotProps = [HeaderFragment.defaultProps.defaultState.dotProps]
+        dotProps = Object.assign({}, HeaderFragment.defaultProps.defaultState.dotProps);
         if (defaultState && defaultState.dotProps) {
           dotProps = Object.assign(dotProps, defaultState.dotProps)
         }
@@ -179,7 +179,7 @@ class HeaderFragment extends Component {
           dotProps: {...dotProps}
         });
       case HeaderFragment.State.Reenter:
-        dotProps = [HeaderFragment.defaultProps.reenterState.dotProps]
+        dotProps = Object.assign({}, HeaderFragment.defaultProps.reenterState.dotProps)
         if (defaultState && reenterState.dotProps) {
           dotProps = Object.assign(dotProps, reenterState.dotProps)
         }
@@ -188,7 +188,7 @@ class HeaderFragment extends Component {
           dotProps: {...dotProps}
         });
       case HeaderFragment.State.Success:
-        dotProps = [HeaderFragment.defaultProps.successState.dotProps]
+        dotProps = Object.assign({}, HeaderFragment.defaultProps.successState.dotProps)
         if (defaultState && successState.dotProps) {
           dotProps = Object.assign(dotProps, successState.dotProps)
         }
@@ -197,7 +197,7 @@ class HeaderFragment extends Component {
           dotProps: {...dotProps}
         });
       case HeaderFragment.State.Error:
-        dotProps = [HeaderFragment.defaultProps.errorState.dotProps]
+        dotProps = Object.assign({}, HeaderFragment.defaultProps.errorState.dotProps)
         if (defaultState && errorState.dotProps) {
           dotProps = Object.assign(dotProps, errorState.dotProps)
         }
