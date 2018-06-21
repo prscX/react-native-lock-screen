@@ -23,6 +23,9 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 
 `$ react-native link react-native-svg`
 
+`$ react-native link react-native-vector-icons`
+
+`$ react-native link react-native-toasty`
 
 - **Android**
   - Please add below snippet into your app `build.gradle`
@@ -55,6 +58,7 @@ allprojects {
 
 `$ cd ./node_modules/react-native-lock-screen/ios/ && pod install`
 
+`$ cd ./node_modules/react-native-toasty/ios/ && pod install`
 
 ## Usage
 ```javascript
