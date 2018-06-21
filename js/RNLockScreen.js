@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { StyleSheet, ViewPropTypes, View, Text, Image, ImageBackground } from "react-native";
 import PropTypes from "prop-types";
 
+import { RNToasty } from 'react-native-toasty'
 import SvgUri from "react-native-svg-uri";
 
 import { HeaderFragment } from './HeaderFragment'
@@ -30,7 +31,7 @@ class RNLockScreen extends Component {
     mode: PropTypes.number,
     type: PropTypes.number,
     lock: PropTypes.string,
-    lockLimit: PropTypes.string,
+    lockLimit: PropTypes.number,
 
     backgroundImage: PropTypes.number,
 
@@ -75,7 +76,8 @@ class RNLockScreen extends Component {
       headerFragmentProps,
       backgroundImage,
       renderHeaderFragment,
-      lockLimit
+      lockLimit,
+      type
     } = this.props;
 
     if (renderHeaderFragment)
@@ -85,6 +87,7 @@ class RNLockScreen extends Component {
     if (this.state.lock !== RNLockScreen.defaultProps.lock) {
       dots = this.state.lock.length;
     }
+    let enableDots = type === 0 ? true : false    
 
     let separator,
       containerProps;
@@ -99,6 +102,7 @@ class RNLockScreen extends Component {
       <View style={{ flex: 1 }}>
         <HeaderFragment
           style={[style.headerContainer, containerProps]}
+          enableDots={enableDots}
           dots={dots}
           dotsLimit={lockLimit}
           state={this.state.state}
@@ -126,10 +130,16 @@ class RNLockScreen extends Component {
   }
 
   _onAdd = pin => {
-    let { lockLimit } = this.props
+    let { lockLimit, type } = this.props
     let { lock, state } = this.state
 
-    if (lock && lock.length >= lockLimit) return
+    if (lock && lock.length >= lockLimit) {
+      if (type === RNLockScreen.Type.Pin) RNToasty.Warn({
+          title: "Passcode Limit Reached"
+        });
+
+      return
+    }
 
     this.setState({
       lock: lock.concat(pin)
@@ -146,9 +156,17 @@ class RNLockScreen extends Component {
   };
 
   _onDone = pin => {
-    let { mode } = this.props 
-
+    let { mode, lockLimit, type } = this.props; 
     let lock = this.state.lock;
+
+    if (type === RNLockScreen.Type.Pin && (lock === undefined || lock.length < lockLimit)) {
+      RNToasty.Warn({
+        title: `Please re-enter ${lockLimit} digit passcode`
+      });
+
+      return;
+    }
+
     if (pin !== undefined && pin !== RNLockScreen.defaultProps.lock) {
       lock = pin;
     }
@@ -181,6 +199,10 @@ class RNLockScreen extends Component {
 
         onCapture && onCapture(lock);
       } else {
+        if (type === RNLockScreen.Type.Pin) RNToasty.Error({
+            title: "Incorrect Passcode"
+          });
+
         if (type === RNLockScreen.Type.Pattern) {
           this.setState({
             state: HeaderFragment.State.Error,
@@ -196,7 +218,7 @@ class RNLockScreen extends Component {
   };
 
   _onVerify = capturedLock => {
-    let { lock, onVerified } = this.props
+    let { lock, onVerified, type } = this.props
 
     let verified;
     if (lock === capturedLock) {
@@ -212,6 +234,10 @@ class RNLockScreen extends Component {
 
       onVerified && onVerified();
     } else {
+      if (type === RNLockScreen.Type.Pin) RNToasty.Error({
+          title: "Incorrect Passcode"
+        });
+
       this.setState({
         state: HeaderFragment.State.Error
       });

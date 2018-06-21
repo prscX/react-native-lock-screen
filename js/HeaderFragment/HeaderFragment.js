@@ -30,7 +30,8 @@ class HeaderFragment extends Component {
 
     state: PropTypes.number,
     dots: PropTypes.number,
-    dotsLimit: PropTypes.number
+    dotsLimit: PropTypes.number,
+    enableDots: PropTypes.bool
   };
 
   static defaultProps = {
@@ -79,7 +80,8 @@ class HeaderFragment extends Component {
     },
 
     state: 0,
-    dots: 0
+    dots: 0,
+    enableDots: true
   };
 
   _renderState() {
@@ -141,7 +143,8 @@ class HeaderFragment extends Component {
       successState,
       errorState,
       renderPasscodeVisualizer,
-      state
+      state,
+      enableDots
     } = this.props;
 
     if (renderPasscodeVisualizer)
@@ -159,7 +162,7 @@ class HeaderFragment extends Component {
               this.view = ref;
             // }}
           > */}
-          <LinePinVisualizer dotsLimit={dotsLimit} dots={dots} style={[props.style]} {...props} />
+          {enableDots && <LinePinVisualizer dotsLimit={dotsLimit} dots={dots} style={[props.style]} {...props} />}
           {/* </Animatable.View>; */}
         </View>;
     };

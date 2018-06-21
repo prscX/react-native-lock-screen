@@ -39,8 +39,8 @@ export default class App extends Component<Props> {
           // headerFragmentProps={{
           //   backgroundColor: '#2777ae'
           // }}
-          lock={'123'}
-          lockLimit={6}
+          lock={'1234'}
+          // lockLimit={6}
           // backgroundImage={wallpaper}
           // lockFragmentProps={{
           //   style: {
