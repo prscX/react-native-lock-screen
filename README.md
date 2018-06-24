@@ -1,5 +1,17 @@
 
-# React Native: Lock Screen
+
+<h1 align="center">
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-native-lock-screen"><img src="http://img.shields.io/npm/v/react-native-lock-screen.svg?style=flat" /></a>
+  <a href="https://github.com/prscX/react-native-lock-screen/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
+  <a href="https://github.com/prscX/react-native-lock-screen#License"><img src="https://img.shields.io/npm/l/react-native-lock-screen.svg?style=flat" /></a>
+</p>
+
+    ReactNative: Lock Screen (Android/iOS)
+
+If this project has helped you out, please support us with a star 🌟
+</h1>
 
 An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for Android & iOS.
 
@@ -15,7 +27,7 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 | ----------------- |
 | <img src="./assets/hero3.png" width="600" height="600" />                  |
 
-## Getting started
+## 📖 Getting started
 
 `$ npm install react-native-lock-screen --save`
 
@@ -35,7 +47,7 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 buildscript {
     repositories {
       jcenter()
-      google()
+      maven { url "https://maven.google.com" }
 		...
     }
 	...
@@ -45,7 +57,7 @@ buildscript {
 allprojects {
     repositories {
       maven { url 'https://jitpack.io' }
-		  google()
+		  maven { url "https://maven.google.com" }
 		...
     }
 }
@@ -60,7 +72,7 @@ allprojects {
 
 `$ cd ./node_modules/react-native-toasty/ios/ && pod install`
 
-## Usage
+## 💻 Usage
 ```javascript
 import RNLockScreen from 'react-native-lock-screen';
 
@@ -73,13 +85,14 @@ import RNLockScreen from 'react-native-lock-screen';
 
 ```
 
-## Props
+## 💡 Props
 
 | Prop              | Type       | Default | Note                                                                                                       |
 | ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
 | `type`       | `number`     |   Pin - 0     | Specify type of lock (Pin/Pattern)
 | `mode`       | `number`     |   Capture - 0     | Specify mode of lock (Capture/Verify)
 | `lock`       | `string`     |        | Specify lock then the mode is Verify
+| `lockLimit`       | `number`     |    `4`    | Specify lock limit of lock
 | `onCapture`       | `func`     |        | Specify onCapture event function, this is invoked once passcode is captured
 | `onVerified`       | `func`     |        | Specify onVerified event function, this is invoked when the passcode is verified
 | `backgroundImage`       | `number` : `optional`     |        | Specify lock screen background image
@@ -159,15 +172,36 @@ import RNLockScreen from 'react-native-lock-screen';
 
 
 
-## Credit
+## ✨ Credits
+
 - [Android: Gesture Lock - aritraroy/PatternLockView](https://github.com/aritraroy/PatternLockView)
 - [iOS: Gesture Lock - Tuqierrenzu/TQGestureLockView](https://github.com/Tuqierrenzu/TQGestureLockView)
 - [Android/iOS: Design - hanks-zyh/PasscodeView](https://github.com/hanks-zyh/PasscodeView)
 
-## Contribution
+## 🤔 How to contribute
+Have an idea? Found a bug? Please raise to [ISSUES](https://github.com/prscX/react-native-lock-screen/issues).
 Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
 
-## License
-This library is provided under the Apache 2.0 License.
+## 💫 Where is this library used?
+If you are using this library in one of your projects, add it in this list below. ✨
 
-RNLockScreen @ Pranav Raj Singh Chauhan
+
+## 📜 License
+This library is provided under the Apache License.
+
+RNLockScreen @ [prscX](https://github.com/prscX)
+
+## 💖 Support my projects
+I open-source almost everything I can, and I try to reply everyone needing help using these projects. Obviously, this takes time. You can integrate and use these projects in your applications for free! You can even change the source code and redistribute (even resell it).
+
+However, if you get some profit from this or just want to encourage me to continue creating stuff, there are few ways you can do it:
+* Starring and sharing the projects you like 🚀
+* If you're feeling especially charitable, please follow [prscX](https://github.com/prscX) on GitHub.
+
+  <a href="https://www.buymeacoffee.com/prscX" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
+  Thanks! ❤️
+  <br/>
+  [prscX.github.io](https://prscx.github.io)
+  <br/>
+  </ Pranav >
