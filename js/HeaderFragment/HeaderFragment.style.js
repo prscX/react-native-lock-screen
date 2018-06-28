@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { moderateScale } from "react-native-size-matters";
 
 const style = StyleSheet.create({
   container: {
@@ -9,27 +10,27 @@ const style = StyleSheet.create({
   },
   circleGroup: {
     flex: 1.5,
-    width: '100%',
+    width: "100%",
     alignItems: "center",
-    justifyContent: 'center'
+    justifyContent: "center"
   },
   circleContainer: {
     paddingBottom: 20
   },
   circle: {
-    width: 100,
-    height: 100,
-    borderRadius: 100 / 2,
+    width: moderateScale(50),
+    height: moderateScale(50),
+    borderRadius: moderateScale(50) / 2,
     backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center"
   },
   circleIcon: {
-    width: 32,
-    height: 32
+    width: moderateScale(16),
+    height: moderateScale(16)
   },
   defaultTitleStyle: {
-    fontSize: 24,
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   reenterTitleStyle: {
@@ -46,9 +47,9 @@ const style = StyleSheet.create({
   },
   passcodeVisualizerContainer: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     alignItems: "center",
-    justifyContent: 'center'
+    justifyContent: "center"
   }
 });
 
