@@ -68,11 +68,12 @@ allprojects {
 
 - **iOS**
 
-`$ cd ./node_modules/react-native-lock-screen/ios/ && pod install`
+- After `react-native link react-native-lock-screen`, please verify `node_modules/react-native-lock-screen/ios/` contains Pods folder. If does not exist please execute `pod install` command on `node_modules/react-native-lock-screen/ios/`, if any error => try `pod repo update` then `pod install`
 
 `$ cd ./node_modules/react-native-toasty/ios/ && pod install`
 
 ## 💻 Usage
+
 ```javascript
 import RNLockScreen from 'react-native-lock-screen';
 
