@@ -18,19 +18,19 @@ const style = StyleSheet.create({
     paddingBottom: 20
   },
   circle: {
-    width: moderateScale(50),
-    height: moderateScale(50),
-    borderRadius: moderateScale(50) / 2,
+    width: moderateScale(46),
+    height: moderateScale(46),
+    borderRadius: moderateScale(46) / 2,
     backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center"
   },
   circleIcon: {
-    width: moderateScale(16),
-    height: moderateScale(16)
+    width: moderateScale(14),
+    height: moderateScale(14)
   },
   defaultTitleStyle: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(12),
     color: "#FFFFFF"
   },
   reenterTitleStyle: {

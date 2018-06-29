@@ -11,7 +11,7 @@ const style = StyleSheet.create({
     alignItems: "center"
   },
   pin: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(12),
     fontWeight: "bold",
     color: "#7c7c7c"
   },
@@ -22,8 +22,8 @@ const style = StyleSheet.create({
     marginTop: 10
   },
   image: {
-    height: moderateScale(16),
-    width: moderateScale(16)
+    height: moderateScale(12),
+    width: moderateScale(12)
   }
 });
 
