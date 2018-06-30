@@ -1,6 +1,6 @@
 {
     "name": "react-native-lock-screen",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "description": "React Native: Native Lock Screen",
     "main": "./js/index.js",
     "scripts": {
@@ -17,7 +17,7 @@
         "url": "https://github.com/prscX/react-native-lock-screen.git"
     },
     "dependencies": {
-        "react-native-animatable": "1.2.4",
+        "react-native-animatable": "1.3.0",
         "react-native-material-ripple": "0.8.0",
         "react-native-on-layout": "2.0.2",
         "react-native-size-matters": "0.1.1",

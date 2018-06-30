@@ -94,6 +94,7 @@ import RNLockScreen from 'react-native-lock-screen';
 | `mode`       | `number`     |   Capture - 0     | Specify mode of lock (Capture/Verify)
 | `lock`       | `string`     |        | Specify lock then the mode is Verify
 | `lockLimit`       | `number`     |    `4`    | Specify lock limit of lock
+| `clearLockOnError`       | `bool`     |    `true`    | Specify clear flag on error, it will automatically reset pin visualize state to it's default
 | `onCapture`       | `func`     |        | Specify onCapture event function, this is invoked once passcode is captured
 | `onVerified`       | `func`     |        | Specify onVerified event function, this is invoked when the passcode is verified
 | `backgroundImage`       | `number` : `optional`     |        | Specify lock screen background image

@@ -32,6 +32,7 @@ class RNLockScreen extends Component {
     type: PropTypes.number,
     lock: PropTypes.string,
     lockLimit: PropTypes.number,
+    clearLockOnError: PropTypes.bool,
 
     backgroundImage: PropTypes.number,
 
@@ -55,7 +56,8 @@ class RNLockScreen extends Component {
     type: 0,
     mode: 0,
     lock: "",
-    lockLimit: 4
+    lockLimit: 4,
+    clearLockOnError: true
   };
 
   constructor(props) {
@@ -80,17 +82,15 @@ class RNLockScreen extends Component {
       type
     } = this.props;
 
-    if (renderHeaderFragment)
-      return renderHeaderFragment();
+    if (renderHeaderFragment) return renderHeaderFragment();
 
     let dots = 0;
     if (this.state.lock !== RNLockScreen.defaultProps.lock) {
       dots = this.state.lock.length;
     }
-    let enableDots = type === 0 ? true : false    
+    let enableDots = type === 0 ? true : false;
 
-    let separator,
-      containerProps;
+    let separator, containerProps;
 
     if (backgroundImage) {
       containerProps = style.transparentContainer;
@@ -130,15 +130,16 @@ class RNLockScreen extends Component {
   }
 
   _onAdd = pin => {
-    let { lockLimit, type } = this.props
-    let { lock, state } = this.state
+    let { lockLimit, type } = this.props;
+    let { lock, state } = this.state;
 
     if (lock && lock.length >= lockLimit) {
-      if (type === RNLockScreen.Type.Pin) RNToasty.Warn({
+      if (type === RNLockScreen.Type.Pin)
+        RNToasty.Warn({
           title: "Passcode Limit Reached"
         });
 
-      return
+      return;
     }
 
     this.setState({
@@ -156,10 +157,13 @@ class RNLockScreen extends Component {
   };
 
   _onDone = pin => {
-    let { mode, lockLimit, type } = this.props; 
+    let { mode, lockLimit, type } = this.props;
     let lock = this.state.lock;
 
-    if (type === RNLockScreen.Type.Pin && (lock === undefined || lock.length < lockLimit)) {
+    if (
+      type === RNLockScreen.Type.Pin &&
+      (lock === undefined || lock.length < lockLimit)
+    ) {
       RNToasty.Warn({
         title: `Please re-enter ${lockLimit} digit passcode`
       });
@@ -179,7 +183,7 @@ class RNLockScreen extends Component {
   };
 
   _onCapture = lock => {
-    let { onCapture, type } = this.props
+    let { onCapture, type, clearLockOnError } = this.props;
 
     if (this.state.state === HeaderFragment.State.Default) {
       this.setState({
@@ -199,7 +203,8 @@ class RNLockScreen extends Component {
 
         onCapture && onCapture(lock);
       } else {
-        if (type === RNLockScreen.Type.Pin) RNToasty.Error({
+        if (type === RNLockScreen.Type.Pin)
+          RNToasty.Error({
             title: "Incorrect Passcode"
           });
 
@@ -212,13 +217,22 @@ class RNLockScreen extends Component {
           this.setState({
             state: HeaderFragment.State.Error
           });
+
+          if (clearLockOnError) {
+            setTimeout(() => {
+              this.setState({
+                lock: "",
+                state: HeaderFragment.State.Reenter
+              });
+            }, 1000)
+          }
         }
       }
     }
   };
 
   _onVerify = capturedLock => {
-    let { lock, onVerified, type } = this.props
+    let { lock, onVerified, type, clearLockOnError } = this.props;
 
     let verified;
     if (lock === capturedLock) {
@@ -234,18 +248,36 @@ class RNLockScreen extends Component {
 
       onVerified && onVerified();
     } else {
-      if (type === RNLockScreen.Type.Pin) RNToasty.Error({
+      if (type === RNLockScreen.Type.Pin)
+        RNToasty.Error({
           title: "Incorrect Passcode"
         });
 
       this.setState({
         state: HeaderFragment.State.Error
       });
+
+      if (clearLockOnError) {
+        setTimeout(() => {
+          this.setState({
+            lock: "",
+            state: HeaderFragment.State.Reenter
+          });
+        }, 1000)
+      }
     }
   };
 
   _renderLockFragment() {
-    let { pinProps, lockFragmentProps, mode, renderLockFragment, backgroundImage, type, lock } = this.props;
+    let {
+      pinProps,
+      lockFragmentProps,
+      mode,
+      renderLockFragment,
+      backgroundImage,
+      type,
+      lock
+    } = this.props;
 
     if (renderLockFragment) return renderLockFragment();
 
@@ -299,7 +331,7 @@ class RNLockScreen extends Component {
   }
 
   render() {
-    let { backgroundImage } = this.props
+    let { backgroundImage } = this.props;
 
     if (backgroundImage) {
       return (
