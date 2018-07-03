@@ -18,9 +18,9 @@ const style = StyleSheet.create({
     paddingBottom: 20
   },
   circle: {
-    width: moderateScale(46),
-    height: moderateScale(46),
-    borderRadius: moderateScale(46) / 2,
+    width: moderateScale(48),
+    height: moderateScale(48),
+    borderRadius: moderateScale(48) / 2,
     backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center"
@@ -30,7 +30,7 @@ const style = StyleSheet.create({
     height: moderateScale(14)
   },
   defaultTitleStyle: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   reenterTitleStyle: {
