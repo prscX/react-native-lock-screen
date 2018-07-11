@@ -34,15 +34,15 @@ const style = StyleSheet.create({
     color: "#FFFFFF"
   },
   reenterTitleStyle: {
-    fontSize: 24,
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   successTitleStyle: {
-    fontSize: 24,
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   errorTitleStyle: {
-    fontSize: 24,
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   passcodeVisualizerContainer: {
