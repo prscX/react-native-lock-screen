@@ -3,9 +3,9 @@ import { moderateScale } from "react-native-size-matters";
 
 const style = StyleSheet.create({
   container: {
-    width: moderateScale(14),
-    height: moderateScale(14),
-    borderRadius: moderateScale(14) / 2,
+    width: moderateScale(16),
+    height: moderateScale(16),
+    borderRadius: moderateScale(16) / 2,
     borderWidth: 2,
     borderColor: "#FFFFFF",
     margin: 5

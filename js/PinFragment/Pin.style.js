@@ -3,15 +3,15 @@ import { moderateScale } from 'react-native-size-matters'
 
 const style = StyleSheet.create({
   container: {
-    minWidth: moderateScale(38),
-    height: moderateScale(38),
-    borderRadius: moderateScale(38) / 2,
+    minWidth: moderateScale(40),
+    height: moderateScale(40),
+    borderRadius: moderateScale(40) / 2,
     backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center'
   },
   pin: {
-    fontSize: moderateScale(13),
+    fontSize: moderateScale(14),
     fontWeight: 'bold',
     color: '#7c7c7c'
   },

@@ -18,9 +18,9 @@ const style = StyleSheet.create({
     paddingBottom: 20
   },
   circle: {
-    width: moderateScale(48),
-    height: moderateScale(48),
-    borderRadius: moderateScale(48) / 2,
+    width: moderateScale(50),
+    height: moderateScale(50),
+    borderRadius: moderateScale(50) / 2,
     backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center"
@@ -30,19 +30,19 @@ const style = StyleSheet.create({
     height: moderateScale(14)
   },
   defaultTitleStyle: {
-    fontSize: moderateScale(13),
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   reenterTitleStyle: {
-    fontSize: moderateScale(13),
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   successTitleStyle: {
-    fontSize: moderateScale(13),
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   errorTitleStyle: {
-    fontSize: moderateScale(13),
+    fontSize: moderateScale(14),
     color: "#FFFFFF"
   },
   passcodeVisualizerContainer: {
