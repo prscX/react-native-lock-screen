@@ -19,6 +19,13 @@ const style = StyleSheet.create({
   transparentContainer: {
     backgroundColor: undefined,
     opacity: 1
+  },
+  toastStyle: {
+      backgroundColor: 'red'
+  },
+  toastTextStyle: {
+      fontWeight: 'bold',
+      color: 'white'
   }
 });
 

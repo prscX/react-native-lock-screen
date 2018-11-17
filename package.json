@@ -1,6 +1,6 @@
 {
     "name": "react-native-lock-screen",
-    "version": "0.0.20",
+    "version": "0.0.21",
     "description": "React Native: Native Lock Screen",
     "main": "./js/index.js",
     "scripts": {
@@ -24,7 +24,7 @@
         "react-native-svg": "6.5.2",
         "react-native-svg-uri": "1.2.3",
         "react-native-vector-icons": "5.0.0",
-        "react-native-toasty": "0.0.3"
+        "react-native-easy-toast": "1.0.6"
     },
     "devDependencies": {
         "prettier-pack": "0.0.7"

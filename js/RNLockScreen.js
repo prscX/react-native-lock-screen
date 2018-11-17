@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { StyleSheet, ViewPropTypes, View, Text, Image, ImageBackground } from "react-native";
 import PropTypes from "prop-types";
 
-import { RNToasty } from 'react-native-toasty'
+import Toast, { DURATION } from 'react-native-easy-toast'
 import SvgUri from "react-native-svg-uri";
 
 import { HeaderFragment } from './HeaderFragment'
@@ -134,10 +134,9 @@ class RNLockScreen extends Component {
     let { lock, state } = this.state;
 
     if (lock && lock.length >= lockLimit) {
-      if (type === RNLockScreen.Type.Pin)
-        RNToasty.Warn({
-          title: "Passcode Limit Reached"
-        });
+      if (type === RNLockScreen.Type.Pin) {
+        this.refs.toast.show("Passcode Limit Reached");
+      }
 
       return;
     }
@@ -164,9 +163,7 @@ class RNLockScreen extends Component {
       type === RNLockScreen.Type.Pin &&
       (lock === undefined || lock.length < lockLimit)
     ) {
-      RNToasty.Warn({
-        title: `Please re-enter ${lockLimit} digit passcode`
-      });
+      this.refs.toast.show(`Please re-enter ${lockLimit} digit passcode`)
 
       return;
     }
@@ -204,9 +201,7 @@ class RNLockScreen extends Component {
         onCapture && onCapture(lock);
       } else {
         if (type === RNLockScreen.Type.Pin)
-          RNToasty.Error({
-            title: "Incorrect Passcode"
-          });
+          this.refs.toast.show("Incorrect Passcode")
 
         if (type === RNLockScreen.Type.Pattern) {
           this.setState({
@@ -248,10 +243,9 @@ class RNLockScreen extends Component {
 
       onVerified && onVerified();
     } else {
-      if (type === RNLockScreen.Type.Pin)
-        RNToasty.Error({
-          title: "Incorrect Passcode"
-        });
+      if (type === RNLockScreen.Type.Pin) {
+        this.refs.toast.show("Incorrect Passcode")
+      }
 
       this.setState({
         state: HeaderFragment.State.Error
@@ -343,6 +337,7 @@ class RNLockScreen extends Component {
         >
           {this._renderHeaderFragment()}
           {this._renderLockFragment()}
+          <Toast ref="toast" style={style.toastStyle} textStyle={style.toastTextStyle} />
         </ImageBackground>
       );
     } else {
@@ -350,6 +345,7 @@ class RNLockScreen extends Component {
         <View style={[style.container]}>
           {this._renderHeaderFragment()}
           {this._renderLockFragment()}
+          <Toast ref="toast" style={style.toastStyle} textStyle={style.toastTextStyle} />
         </View>
       );
     }

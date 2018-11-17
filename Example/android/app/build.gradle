@@ -137,7 +137,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-toasty')
     compile project(':react-native-vector-icons')
     compile project(':react-native-svg')
     compile project(':react-native-lock-screen')
