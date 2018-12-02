@@ -1,11 +1,11 @@
 {
     "name": "react-native-lock-screen",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "description": "React Native: Native Lock Screen",
     "main": "./js/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "node scripts/installer.js"
+        "postinstall": "node ../pod-installer/index.js"
     },
     "keywords": [
         "react-native"
@@ -24,10 +24,11 @@
         "react-native-svg": "6.5.2",
         "react-native-svg-uri": "1.2.3",
         "react-native-vector-icons": "5.0.0",
-        "react-native-easy-toast": "1.0.6"
+        "react-native-easy-toast": "1.0.6",
+        "pod-installer": "0.0.0"
     },
     "devDependencies": {
-        "prettier-pack": "0.0.7"
+        "prettier-pack": "0.0.8"
     },
     "peerDependencies": {}
 }
