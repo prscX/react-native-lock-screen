@@ -4,7 +4,7 @@ import { StyleSheet, ViewPropTypes, View, Text, Image, ImageBackground } from "r
 import PropTypes from "prop-types";
 
 import Toast, { DURATION } from 'react-native-easy-toast'
-import SvgUri from "react-native-svg-uri";
+import SvgUri from "react-native-svg-uri-reborn";
 
 import { HeaderFragment } from './HeaderFragment'
 import { PinFragment } from './PinFragment'
