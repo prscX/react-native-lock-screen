@@ -1,24 +1,22 @@
+require 'json'
+
+package = JSON.parse(File.read(File.join(__dir__, '../package.json')))
 
 Pod::Spec.new do |s|
-  s.name         = "RNLockScreen"
-  s.version      = "1.0.0"
-  s.summary      = "RNLockScreen"
-  s.description  = <<-DESC
-                  RNLockScreen
-                   DESC
-  s.homepage     = ""
-  s.license      = "MIT"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-  s.author             = { "author" => "author@domain.cn" }
-  s.platform     = :ios, "7.0"
-  s.source       = { :git => "https://github.com/author/RNLockScreen.git", :tag => "master" }
-  s.source_files  = "RNLockScreen/**/*.{h,m}"
-  s.requires_arc = true
+  s.name                   = 'RNLockScreen'
+  s.version                = package['version']
+  s.summary                = package['description']
+  s.description            = package['description']
+  s.homepage               = package['homepage']
+  s.license                = package['license']
+  s.author                 = package['author']
+  s.source                 = { :git => 'https://github.com/prscX/react-native-lock-screen.git', :tag => 'master' }
 
+  s.platform               = :ios, '9.0'
+  s.ios.deployment_target  = '8.0'
 
-  s.dependency "React"
-  #s.dependency "others"
-
+  s.preserve_paths         = 'LICENSE', 'package.json'
+  s.source_files           = '**/*.{h,m}'
+  s.dependency             'React'
+  s.dependency             'TQGestureLockView', '~> 0.1.1'
 end
-
-  

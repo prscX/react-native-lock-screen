@@ -29,7 +29,35 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
 
 ## 📖 Getting started
 
-`$ npm install react-native-lock-screen --save`
+`$ yarn add react-native-lock-screen --save`
+
+## **RN60 >= RNLS V1 >**
+
+> RN60 above please use `react-native-lock-screen` V1 and above
+
+`$ yarn add react-native-lock-screen`
+
+`$ yarn add react-native-svg`
+
+`$ yarn add react-native-vector-icons`
+
+- **iOS**
+
+> **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
+
+	- Add the following to your `Podfile` -> `ios/Podfile` and run pod update:
+
+```
+  use_native_modules!
+
+  pod 'RNLockScreen', :path => '../node_modules/react-native-lock-screen/ios'
+```
+
+- **Android**
+
+## **RN60 < RNLS V1 <**
+
+> RN60 below please use `react-native-lock-screen` V.0.*
 
 `$ react-native link react-native-lock-screen`
 
@@ -41,7 +69,6 @@ An easy-to-use, customizable and Material Design ready Pattern/Pin Lock view for
   - Please add below snippet into your app `build.gradle`
 
 ```
-
 buildscript {
     repositories {
       jcenter()
