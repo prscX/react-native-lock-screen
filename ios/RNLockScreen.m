@@ -90,7 +90,12 @@ RCT_CUSTOM_VIEW_PROPERTY(props, NSDictonary *, UIView) {
                             @"pattern": securityCodeSting,
                             @"eventType": @"completed",
                             };
-    [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
+//    [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
+
+    RCTComponentEvent *cEvent = [[RCTComponentEvent alloc] initWithName:@"topChange"
+                                                             viewTag:lockView.reactTag
+                                                                body:event];
+    [self.bridge.eventDispatcher sendEvent:cEvent];
 }
 
 

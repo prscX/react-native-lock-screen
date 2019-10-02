@@ -5,6 +5,7 @@
 #import <React/RCTViewManager.h>
 #endif
 
+#import <React/RCTComponentEvent.h>
 #import "TQGestureLockView.h"
 
 @interface RNLockScreen : RCTViewManager

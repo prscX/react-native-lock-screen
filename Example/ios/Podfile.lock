@@ -217,10 +217,10 @@ PODS:
     - React-cxxreact (= 0.61.1)
     - React-jsi (= 0.61.1)
     - ReactCommon/jscallinvoker (= 0.61.1)
-  - RNLockScreen (1.0.0):
+  - RNLockScreen (1.0.1):
     - React
     - TQGestureLockView (~> 0.1.1)
-  - RNSVG (9.9.6):
+  - RNSVG (9.9.9):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -349,12 +349,12 @@ SPEC CHECKSUMS:
   React-RCTText: 81b62b4e7f11531a5154e4daa5617670d5a2d5de
   React-RCTVibration: 8be61459e3749d1fb02cf414edd05b3007622882
   ReactCommon: 4fba5be89efdf0b5720e0adb3d8d7edf6e532db0
-  RNLockScreen: 842b900d9bab8854473179dbd6af4016862834dd
-  RNSVG: 7364057921be1c8d234642bb2bd001a6c4a8f313
+  RNLockScreen: bf448b18f03b3600740dd83c8fbb72d2a47ce8c9
+  RNSVG: b7e8745a87c046386569eecb437b3040cc6a7954
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   TQGestureLockView: 62eb45b25889c9b3ffe2a99d06b1e586cb744ccd
   Yoga: d8c572ddec8d05b7dba08e4e5f1924004a177078
 
 PODFILE CHECKSUM: 1d508023681c2842970916394a03d05fb0294c4b
 
-COCOAPODS: 1.8.0
+COCOAPODS: 1.8.1
