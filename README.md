@@ -98,7 +98,7 @@ allprojects {
 ## 💻 Usage
 
 ```javascript
-import RNLockScreen from 'react-native-lock-screen';
+import { RNLockScreen } from 'react-native-lock-screen';
 
 <RNLockScreen type={RNLockScreen.Type.Pin} mode={RNLockScreen.Mode.Capture} onCapture={lock => {
   }} onVerified={() => {
