@@ -1,6 +1,6 @@
 {
     "name": "react-native-lock-screen",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "React Native: Native Lock Screen",
     "main": "./js/index.js",
     "homepage": "https://github.com/prscX/react-native-lock-screen.git",
@@ -27,7 +27,7 @@
         "react-native-easy-toast": "1.2.0"
     },
     "devDependencies": {
-        "prettier-pack": "0.0.8"
+        "prettier-pack": "0.0.11"
     },
     "peerDependencies": {}
 }

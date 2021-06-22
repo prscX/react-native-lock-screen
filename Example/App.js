@@ -4,37 +4,38 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 
-import { RNLockScreen } from 'react-native-lock-screen'
+import {RNLockScreen} from 'react-native-lock-screen';
 
-import wallpaper from './assets/wallpaper.jpg'
+import wallpaper from './assets/wallpaper.jpg';
 
 type Props = {};
 export default class App extends Component<Props> {
-  _onPress () {
-    RNLockScreen.Show()
+  _onPress() {
+    RNLockScreen.Show();
   }
 
   render() {
-    return <View style={styles.container}>
-        <StatusBar
-          backgroundColor={'#4a8df3'}
-          barStyle={"light-content"}
-        />
-        <RNLockScreen type={1} mode={0} onCapture={lock => {
-            console.log("lock: " + lock);
+    return (
+      <View style={styles.container}>
+        <StatusBar backgroundColor={'#4a8df3'} barStyle={'light-content'} />
+        <RNLockScreen
+          type={1}
+          mode={0}
+          onCapture={lock => {
+            console.log('lock: ' + lock);
           }}
           onVerified={() => {
-            console.log('lock verified')
+            console.log('lock verified');
           }}
           // headerFragmentProps={{
           //   backgroundColor: '#2777ae'
@@ -75,12 +76,13 @@ export default class App extends Component<Props> {
           //   alphabetPinSuggestion: true
           // }}
         />
-      </View>;
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

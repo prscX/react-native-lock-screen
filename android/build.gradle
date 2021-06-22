@@ -1,7 +1,8 @@
 
 buildscript {
     repositories {
-        jcenter()
+        google()
+        mavenCentral()
         maven { url "https://maven.google.com" }
     }
 
@@ -33,7 +34,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.facebook.react:react-native:+'
-    compile 'com.andrognito.patternlockview:patternlockview:1.0.0'
+    implementation 'com.facebook.react:react-native:+'
+    implementation 'com.andrognito.patternlockview:patternlockview:1.0.0'
 }
   
