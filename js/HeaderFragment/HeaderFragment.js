@@ -9,7 +9,7 @@ import LinePinVisualizer from "./LinePinVisualizer";
 import style from "./HeaderFragment.style";
 
 import lockIcon from "../../assets/lock.png";
-import successIcon from "../../assets/lock.png";
+import successIcon from "../../assets/success.png";
 
 
 class HeaderFragment extends Component {
